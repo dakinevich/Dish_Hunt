@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/home">
+    <fragment
+        android:id="@+id/home"
+        android:name="ru.example.dishhunt.ui.home.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/home">
+        <action
+            android:id="@+id/action_home_to_searchFragment"
+            app:destination="@id/searchFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/saved"
+        android:name="ru.example.dishhunt.ui.saved.SavedFragment"
+        android:label="SavedFragment"
+        tools:layout="@layout/saved"/>
+    <fragment
+        android:id="@+id/profile"
+        android:name="ru.example.dishhunt.ui.profile.ProfileFragment"
+        android:label="ProfileFragment"
+        tools:layout="@layout/profile"/>
+    <fragment
+        android:id="@+id/settings"
+        android:name="ru.example.dishhunt.ui.settings.SettingsFragment"
+        android:label="SettingsFragment"
+        tools:layout="@layout/settings"/>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="ru.example.dishhunt.ui.home.SearchFragment"
+        android:label="SearchFragment"
+        tools:layout="@layout/home">
+        <action
+            android:id="@+id/action_searchFragment_to_home"
+            app:destination="@id/home" />
+        <action
+            android:id="@+id/action_searchFragment_to_resultsFragment"
+            app:destination="@id/resultsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/resultsFragment"
+        android:name="ru.example.dishhunt.ui.home.ResultsFragment"
+        android:label="ResultsFragment" >
+        <action
+            android:id="@+id/action_resultsFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_resultsFragment_to_home"
+            app:destination="@id/home" />
+        <argument
+            android:name="search_text"
+            app:argType="string" />
+    </fragment>
+</navigation>

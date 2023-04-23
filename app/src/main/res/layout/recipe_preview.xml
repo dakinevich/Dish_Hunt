@@ -22,6 +22,7 @@
             android:layout_height="60dp"
             android:orientation="horizontal">
             <TextView
+                android:id="@+id/recipe_preview_title"
                 android:layout_width="105dp"
                 android:layout_height="50dp"
                 android:layout_marginTop="4dp"
@@ -32,9 +33,8 @@
                 android:text="Лазанья под шубой" />
             <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_baseline_bookmark_border_24"
-                android:layout_gravity="top"
+                android:layout_height="25dp"
+                android:src="@drawable/bookmark"
                 android:layout_marginTop="2dp"
                 android:layout_marginLeft="5dp"
                 app:tint="@color/flat2" />
