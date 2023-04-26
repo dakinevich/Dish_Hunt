@@ -4,112 +4,132 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=""
     android:background="@color/background"
     android:orientation="vertical">
 
-    <EditText
+    <LinearLayout
         android:id="@+id/home_search_btn"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:textSize="20dp"
-        android:fontFamily="@font/roboto_bold"
-        android:textColorHint="@color/accent_light"
-        android:background="@drawable/rounded_corner_light_20"
-        android:drawableStart="@drawable/ic_baseline_search_24"
-        android:drawableTint="@color/accent_light"
+        android:orientation="horizontal"
         android:paddingStart="20dp"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:inputType="text"
-        android:hint="Поиск"
-        tools:ignore="RtlSymmetry" />
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="10dp"
-
-        android:orientation="vertical">
+        android:background="@drawable/rounded_corner_light_20">
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center"
+            android:src="@drawable/search"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="5dp"
+            app:tint="@color/accent_light" />
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Недавно просметренные"
-            android:textSize="24dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginBottom="5dp"
+            android:layout_width="match_parent"
+            android:gravity="center|left"
+            android:layout_height="match_parent"
+            android:text="Поиск"
+            android:textSize="20dp"
             android:fontFamily="@font/roboto_bold"
-            android:textColor="@color/accent_dark"/>
-        <HorizontalScrollView
-            android:scrollbars="none"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp">
+            android:textColor="@color/accent_light"/>
+    </LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingBottom="50dp">
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingLeft="10dp"
-                android:scrollbars="none">
-                <include layout="@layout/recipe_preview"/>
-                <include layout="@layout/recipe_preview"/>
-                <include layout="@layout/recipe_preview"/>
-                <include layout="@layout/recipe_preview"/>
+                android:paddingTop="10dp"
+
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Недавно просметренные"
+                    android:textSize="24dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginBottom="5dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:textColor="@color/accent_dark"/>
+                <HorizontalScrollView
+                    android:scrollbars="none"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingLeft="10dp"
+                        android:scrollbars="none">
+                        <include layout="@layout/recipe_preview"/>
+                        <include layout="@layout/recipe_preview"/>
+                        <include layout="@layout/recipe_preview"/>
+                        <include layout="@layout/recipe_preview"/>
+                    </LinearLayout>
+                </HorizontalScrollView>
             </LinearLayout>
-        </HorizontalScrollView>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingTop="10dp"
-        android:background="@color/accent_light">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Приготовьте за 20 минкт"
-            android:textSize="24dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginBottom="5dp"
-            android:fontFamily="@font/roboto_bold"
-            android:textColor="@color/flat1"/>
-        <HorizontalScrollView
-            android:scrollbars="none"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp">
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingLeft="10dp"
-                android:scrollbars="none">
-                <include layout="@layout/recipe_preview"/>
+                android:orientation="vertical"
+                android:paddingTop="10dp"
+                android:background="@color/accent_light">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Приготовьте за 20 минкт"
+                    android:textSize="24dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginBottom="5dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:textColor="@color/flat1"/>
+                <HorizontalScrollView
+                    android:scrollbars="none"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingLeft="10dp"
+                        android:scrollbars="none">
+                        <include layout="@layout/recipe_preview"/>
 
-                <include layout="@layout/recipe_preview" />
+                        <include layout="@layout/recipe_preview" />
 
-                <include layout="@layout/recipe_preview"/>
-                <include layout="@layout/recipe_preview"/>
+                        <include layout="@layout/recipe_preview"/>
+                        <include layout="@layout/recipe_preview"/>
+                    </LinearLayout>
+                </HorizontalScrollView>
             </LinearLayout>
-        </HorizontalScrollView>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="10dp"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dp"
 
-        android:orientation="vertical">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Коллекция на новый год"
-            android:textSize="24dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginBottom="5dp"
-            android:fontFamily="@font/roboto_bold"
-            android:textColor="@color/accent_dark"/>
-        <include layout="@layout/collection_preview"/>
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Коллекция на новый год"
+                    android:textSize="24dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginBottom="5dp"
+                    android:fontFamily="@font/roboto_bold"
+                    android:textColor="@color/accent_dark"/>
+                <include layout="@layout/collection_preview"/>
 
-    </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+    </ScrollView>
 
 </LinearLayout>

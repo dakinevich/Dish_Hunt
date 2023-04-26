@@ -5,8 +5,10 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import ru.example.dishhunt.data.models.Recipe;
+
 @Entity(tableName = "recipe_table")
-public class Recipe {
+public class RecipeEntity {
 
     @PrimaryKey(autoGenerate = true)
     private int id;
@@ -26,11 +28,11 @@ public class Recipe {
     @ColumnInfo(name = "img_src")
     private String mImgSrc;
 
-    public Recipe() {
+    public RecipeEntity() {
 
     }
 
-    public Recipe(@NonNull String Title, @NonNull String CookTime, @NonNull String Portions, String ImgSrc) {
+    public RecipeEntity(@NonNull String Title, @NonNull String CookTime, @NonNull String Portions, String ImgSrc) {
         this.mTitle = Title;
         this.mCookTime = CookTime;
         this.mPortions = Portions;
@@ -74,5 +76,9 @@ public class Recipe {
 
     public void setImgSrc(String mImgSrc) {
         this.mImgSrc = mImgSrc;
+    }
+
+    public Recipe toDomainModel() {
+        return new Recipe(mTitle, mCookTime, mPortions, mImgSrc);
     }
 }

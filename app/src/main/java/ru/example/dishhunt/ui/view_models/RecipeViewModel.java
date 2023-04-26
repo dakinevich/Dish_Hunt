@@ -7,7 +7,7 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
-import ru.example.dishhunt.data.data_sources.room.entites.Recipe;
+import ru.example.dishhunt.data.models.Recipe;
 import ru.example.dishhunt.data.repositories.RecipeRepository;
 
 public class RecipeViewModel extends AndroidViewModel {

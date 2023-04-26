@@ -7,7 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 
-import ru.example.dishhunt.data.data_sources.room.entites.Recipe;
+import ru.example.dishhunt.data.models.Recipe;
 
 public class RecipeListAdapter extends ListAdapter<Recipe, RecipeViewHolder> {
 

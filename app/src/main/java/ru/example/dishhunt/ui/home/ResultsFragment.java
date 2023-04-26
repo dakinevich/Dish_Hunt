@@ -38,8 +38,11 @@ public class ResultsFragment extends Fragment {
         View view = binding.getRoot();
 
 
-        String result = getArguments().getString("search_text");
-        binding.resultsTextView.setText(result);
+        Bundle bundle = this.getArguments();
+        if (bundle != null) {
+            String result = bundle.getString("search_text", "");
+            binding.resultsTextView.setText(result);
+        }
 
         RecyclerView recyclerView = view.findViewById(R.id.results_recyclerview);
         final RecipeListAdapter adapter = new RecipeListAdapter(new RecipeListAdapter.RecipeDiff());
@@ -58,9 +61,9 @@ public class ResultsFragment extends Fragment {
         });
         binding.resultsSettingsBtn.setOnClickListener(view_f -> {
             String search_text = binding.resultsTextView.getText().toString();
-            Bundle bundle = new Bundle();
-            bundle.putString("search_text", search_text);
-            NavHostFragment.findNavController(this).navigate(R.id.action_resultsFragment_to_searchFragment, bundle);
+            Bundle bundle_out = new Bundle();
+            bundle_out.putString("search_text", search_text);
+            NavHostFragment.findNavController(this).navigate(R.id.action_resultsFragment_to_searchFragment, bundle_out);
         });
 
 

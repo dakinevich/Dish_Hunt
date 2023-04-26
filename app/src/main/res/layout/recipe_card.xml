@@ -5,6 +5,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/background"
     android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:src="@drawable/arrow_left"
+            app:tint="@color/accent_light" />
+        <Space
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"></Space>
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="10dp"
+            android:layout_gravity="center"
+            android:src="@drawable/bookmark"
+            app:tint="@color/accent_light" />
+    </LinearLayout>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="40dp"
@@ -14,51 +35,606 @@
         android:fontFamily="@font/roboto_medium"
         android:gravity="center"
         android:layout_marginBottom="20dp"/>
-    <androidx.cardview.widget.CardView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="20dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginHorizontal="20dp">
-        <ImageView
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:src="@drawable/sample_food"/>
+            android:layout_height="wrap_content">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-    </androidx.cardview.widget.CardView>
-    <androidx.cardview.widget.CardView
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/recipe_card_img"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="7dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginHorizontal="20dp">
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/sample_food"/>
+
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="20dp"
+                    android:id="@+id/recipe_card_social"
+                    app:cardBackgroundColor="@color/flat2"
+                    app:cardElevation="6dp"
+                    android:layout_marginHorizontal="20dp"
+                    app:contentPaddingTop="40dp"
+                    android:layout_marginTop="-40dp"
+                    app:layout_constraintTop_toBottomOf="@+id/recipe_card_img">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="30dp"
+                        android:paddingVertical="10dp">
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_weight="1"
+                            android:src="@drawable/eye"
+                            app:tint="@color/accent_dark" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="5"
+                            android:layout_gravity="center"
+                            android:textColor="@color/accent_dark"
+                            android:fontFamily="@font/roboto_medium"
+                            android:textSize="16dp"
+                            android:text="345 просмотров"/>
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_weight="1"
+                            android:src="@drawable/like"
+                            app:tint="@color/accent_dark" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_gravity="center"
+                            android:textColor="@color/accent_dark"
+                            android:fontFamily="@font/roboto_medium"
+                            android:textSize="16dp"
+                            android:text="45"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="20dp"
+                    android:id="@+id/recipe_card_description"
+                    app:cardBackgroundColor="@color/background"
+                    app:cardElevation="5dp"
+                    android:layout_marginHorizontal="20dp"
+                    app:contentPadding="20dp"
+                    app:contentPaddingTop="50dp"
+                    android:layout_marginTop="-40dp"
+                    android:layout_marginBottom="10dp"
+                    app:layout_constraintTop_toBottomOf="@+id/recipe_card_social">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_medium"
+                        android:textColor="@color/flat3"
+                        android:text="Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться. Lorem Ipsum используют потому, что тот обеспечивает более или менее стандартное заполнение шаблона, а также реальное распределение букв."/>
+
+                </androidx.cardview.widget.CardView>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="invisible"
+                    app:contentPaddingTop="20dp"
+                    app:layout_constraintTop_toBottomOf="@+id/recipe_card_description">
+
+                </androidx.cardview.widget.CardView>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="90dp"
+                app:cardCornerRadius="20dp"
+                app:cardBackgroundColor="@color/accent_light"
+                app:cardElevation="5dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginHorizontal="20dp">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="20dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/rounded_back_60"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/roboto_medium"
+                        android:textColor="@color/background"
+                        android:text="Имя Фамилия"/>
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="20dp"
+                app:cardBackgroundColor="@color/background"
+                app:cardElevation="5dp"
+                app:contentPadding="20dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginBottom="10dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_medium"
+                        android:textColor="@color/flat4"
+                        android:text="Сложность"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginBottom="10dp">
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_marginRight="5dp"
+                            android:src="@drawable/hat_chef_empty"
+                            app:tint="@color/flat3" />
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:layout_marginRight="5dp"
+                            android:src="@drawable/hat_chef_empty"
+                            app:tint="@color/flat3"/>
+                        <ImageView
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:src="@drawable/hat_chef_empty"
+                            app:tint="@color/flat3"/>
+                    </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_medium"
+                        android:textColor="@color/flat4"
+                        android:text="Время приготовления"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginBottom="10dp">
+                        <ImageView
+                            android:layout_width="18dp"
+                            android:layout_gravity="center"
+                            android:layout_height="18dp"
+                            android:layout_marginRight="5dp"
+                            android:src="@drawable/clock"
+                            app:tint="@color/accent_light" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="50 минут"
+                            android:textColor="@color/flat3"
+                            android:fontFamily="@font/roboto_medium"
+                            android:textSize="14dp"/>
+                    </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_medium"
+                        android:textColor="@color/flat4"
+                        android:text="Колличество порций"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginBottom="10dp">
+                        <ImageView
+                            android:layout_width="18dp"
+                            android:layout_gravity="center"
+                            android:layout_height="18dp"
+                            android:layout_marginRight="5dp"
+                            android:src="@drawable/portion"
+                            app:tint="@color/accent_light" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="4 порции"
+                            android:textColor="@color/flat3"
+                            android:fontFamily="@font/roboto_medium"
+                            android:textSize="14dp"/>
+                    </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_medium"
+                        android:textColor="@color/flat4"
+                        android:text="Примерная стоимость"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginBottom="10dp">
+                        <ImageView
+                            android:layout_width="18dp"
+                            android:layout_gravity="center"
+                            android:layout_height="18dp"
+                            android:layout_marginRight="5dp"
+                            android:src="@drawable/ruble"
+                            app:tint="@color/accent_light" />
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="320 рублей"
+                            android:textColor="@color/flat3"
+                            android:fontFamily="@font/roboto_medium"
+                            android:textSize="14dp"/>
+                    </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_medium"
+                        android:textColor="@color/flat4"
+                        android:text="Возможные аллергены"/>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14dp"
+                            android:textColor="@color/negative"
+                            android:fontFamily="@font/roboto_medium"
+                            android:text="Морковь"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="14dp"
+                            android:textColor="@color/negative"
+                            android:fontFamily="@font/roboto_medium"
+                            android:text="Селедка"/>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginBottom="20dp"
+                android:orientation="horizontal">
+                <androidx.cardview.widget.CardView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:backgroundTint="@color/accent_dark"
+                    app:cardCornerRadius="10dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:textAlignment="center"
+                            android:text="Каллории"
+                            android:layout_marginBottom="5dp"
+                            android:textSize="12sp"
+                            android:textColor="@color/background"
+                            android:fontFamily="@font/roboto_medium"/>
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="6dp"
+                            app:cardCornerRadius="10dp"
+                            android:backgroundTint="@color/accent_light">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:textColor="@color/background"
+                                android:fontFamily="@font/roboto_medium"
+                                android:textSize="12sp"
+                                android:textAlignment="center"
+                                android:text="2000
+                                ккал"/>
+                        </androidx.cardview.widget.CardView>
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:backgroundTint="@color/accent_dark"
+                    app:cardCornerRadius="10dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:textAlignment="center"
+                            android:text="Белки"
+                            android:layout_marginBottom="5dp"
+
+                            android:textSize="12sp"
+                            android:textColor="@color/background"
+                            android:fontFamily="@font/roboto_medium"/>
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="6dp"
+                            app:cardCornerRadius="10dp"
+                            android:backgroundTint="@color/accent_light">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:textColor="@color/background"
+                                android:fontFamily="@font/roboto_medium"
+                                android:textSize="12sp"
+                                android:textAlignment="center"
+                                android:text="2000
+                                ккал"/>
+                        </androidx.cardview.widget.CardView>
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:backgroundTint="@color/accent_dark"
+                    app:cardCornerRadius="10dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:textAlignment="center"
+                            android:text="Жиры"
+                            android:layout_marginBottom="5dp"
+
+                            android:textSize="12sp"
+                            android:textColor="@color/background"
+                            android:fontFamily="@font/roboto_medium"/>
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="6dp"
+                            app:cardCornerRadius="10dp"
+                            android:backgroundTint="@color/accent_light">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:textColor="@color/background"
+                                android:fontFamily="@font/roboto_medium"
+                                android:textSize="12sp"
+                                android:textAlignment="center"
+                                android:text="2000
+                                ккал"/>
+                        </androidx.cardview.widget.CardView>
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+                <Space
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"/>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:backgroundTint="@color/accent_dark"
+                    app:cardCornerRadius="10dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:textAlignment="center"
+                            android:text="Углеводы"
+                            android:layout_marginBottom="5dp"
+
+                            android:textSize="12sp"
+                            android:textColor="@color/background"
+                            android:fontFamily="@font/roboto_medium"/>
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="6dp"
+                            app:cardCornerRadius="10dp"
+                            android:backgroundTint="@color/accent_light">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:textColor="@color/background"
+                                android:fontFamily="@font/roboto_medium"
+                                android:textSize="12sp"
+                                android:textAlignment="center"
+                                android:text="2000
+                                ккал"/>
+                        </androidx.cardview.widget.CardView>
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="20dp"
+                app:cardBackgroundColor="@color/background"
+                app:cardElevation="5dp"
+                app:contentPadding="20dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginBottom="20dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_medium"
+                        android:textSize="16sp"
+                        android:textColor="@color/flat4"
+                        android:text="Ингридиенты"
+                        android:layout_marginBottom="10dp"/>
+                    <TableLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+                        <TableRow android:layout_marginBottom="5dp">
+                            <TextView
+                                android:layout_width="80dp"
+                                android:text="Морковь"
+                                android:fontFamily="@font/roboto_medium"
+                                android:textSize="14sp"
+                                android:textColor="@color/flat2"/>
+                            <TextView android:text="300г"
+                                android:fontFamily="@font/roboto_medium"
+                                android:textSize="14sp"
+                                android:textColor="@color/accent_light"/>
+                        </TableRow>
+                        <TableRow android:layout_marginBottom="5dp">
+                            <TextView
+                                android:layout_width="80dp"
+                                android:text="Морковь"
+                                android:fontFamily="@font/roboto_medium"
+                                android:textSize="14sp"
+                                android:textColor="@color/flat2"/>
+                            <TextView android:text="300г"
+                                android:fontFamily="@font/roboto_medium"
+                                android:textSize="14sp"
+                                android:textColor="@color/accent_light"/>
+                        </TableRow>
+                        <TableRow android:layout_marginBottom="5dp">
+                            <TextView
+                                android:layout_width="80dp"
+                                android:text="Морковь"
+                                android:fontFamily="@font/roboto_medium"
+                                android:textSize="14sp"
+                                android:textColor="@color/flat2"/>
+                            <TextView android:text="300г"
+                                android:fontFamily="@font/roboto_medium"
+                                android:textSize="14sp"
+                                android:textColor="@color/accent_light"/>
+                        </TableRow>
+
+
+                        <TableRow
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp">
+                            <TextView
+                                android:layout_width="80dp"
+                                android:text="Итого"
+                                android:fontFamily="@font/roboto_medium"
+                                android:textSize="14sp"
+                                android:textColor="@color/flat2"/>
+                            <TextView android:text="1550г"
+                                android:fontFamily="@font/roboto_medium"
+                                android:textSize="14sp"
+                                android:textColor="@color/accent_dark"/>
+                        </TableRow>
+                    </TableLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_medium"
+                        android:textColor="@color/flat4"
+                        android:layout_marginBottom="10dp"
+                        android:text="Дополнително"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/roboto_medium"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="@color/flat3"
+                        android:text="Соль, перец по вкусу"/>
+
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/recipe_card_viewpager"
+                android:layout_width="match_parent"
+                android:layout_marginBottom="20dp"
+                android:layout_height="300dp">
+
+            </androidx.viewpager2.widget.ViewPager2>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:fontFamily="@font/roboto_medium"
+                android:textSize="20sp"
+                android:layout_marginBottom="10dp"
+                android:textColor="@color/flat4"
+                android:text="Комментарии"/>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:paddingBottom="50dp"
+                android:orientation="vertical">
+                <include layout="@layout/comment"/>
+                <include layout="@layout/comment"/>
+                <include layout="@layout/comment"/>
+                <include layout="@layout/comment"/>
+
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+    <!-- <androidx.viewpager2.widget.ViewPager2
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="20dp"
-        app:cardBackgroundColor="@color/background"
-        app:cardElevation="6dp"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginBottom="10dp"
-        app:contentPadding="20dp">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_medium"
-            android:textColor="@color/flat3"
-            android:text="Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться. Lorem Ipsum используют потому, что тот обеспечивает более или менее стандартное заполнение шаблона, а также реальное распределение букв."/>
+        android:layout_height="wrap_content">
+        
+    </androidx.viewpager2.widget.ViewPager2> -->
 
-    </androidx.cardview.widget.CardView>
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="20dp"
-        app:cardBackgroundColor="@color/background"
-        app:cardElevation="6dp"
-        android:layout_marginHorizontal="20dp"
-        app:contentPadding="20dp">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/roboto_medium"
-            android:textColor="@color/flat3"
-            android:text="Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться. Lorem Ipsum используют потому, что тот обеспечивает более или менее стандартное заполнение шаблона, а также реальное распределение букв."/>
 
-    </androidx.cardview.widget.CardView>
+
 
 </LinearLayout>

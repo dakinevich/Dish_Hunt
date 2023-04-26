@@ -12,9 +12,9 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import ru.example.dishhunt.data.data_sources.room.dao.RecipeDao;
-import ru.example.dishhunt.data.data_sources.room.entites.Recipe;
+import ru.example.dishhunt.data.data_sources.room.entites.RecipeEntity;
 
-@Database(entities = {Recipe.class}, version = 1, exportSchema = false)
+@Database(entities = {RecipeEntity.class}, version = 1, exportSchema = false)
 public abstract class RecipeRoomDatabase extends RoomDatabase {
 
     public abstract RecipeDao recipeDao();
@@ -44,11 +44,11 @@ public abstract class RecipeRoomDatabase extends RoomDatabase {
             databaseWriteExecutor.execute(() -> {
                 RecipeDao dao = INSTANCE.recipeDao();
                 dao.deleteAll();
-                Recipe recipe = new Recipe("Test title", "35m", "4", null);
-                dao.insert(recipe);
+                RecipeEntity recipeEntity = new RecipeEntity("Test title", "35m", "4", null);
+                dao.insert(recipeEntity);
                 for(int i = 1; i<15; i++){
-                    recipe = new Recipe("Test title"+i, "35m", "4", null);
-                    dao.insert(recipe);
+                    recipeEntity = new RecipeEntity("Test title"+i, "35m", "4", null);
+                    dao.insert(recipeEntity);
                 }
 
             });

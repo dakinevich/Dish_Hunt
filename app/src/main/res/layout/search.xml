@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     android:orientation="vertical">
 
     <LinearLayout
@@ -87,21 +88,29 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_gravity="center"
-            android:src="@drawable/search"
+            android:src="@drawable/fire"
             app:tint="@color/accent_dark"
             android:layout_marginRight="5dp"/>
         <TextView
             android:layout_gravity="center"
             android:textColor="@color/accent_light"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
             android:textSize="20sp"
             android:fontFamily="@font/roboto_medium"
+            android:layout_marginRight="5dp"
             android:text="от"/>
         <EditText
             android:layout_gravity="center"
             android:layout_width="60dp"
-            android:layout_height="30dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="5dp"
+            android:textSize="16sp"
+            android:inputType="number"
+            android:translationY="3dp"
+            android:textColor="@color/accent_dark"
+            android:fontFamily="@font/roboto_bold"
             android:backgroundTint="@color/accent_dark" />
         <TextView
             android:layout_gravity="center"
@@ -110,13 +119,19 @@
             android:textSize="20dp"
             android:fontFamily="@font/roboto_medium"
             android:textColor="@color/accent_light"
+            android:layout_marginRight="5dp"
             android:text="до"/>
         <EditText
             android:layout_gravity="center"
-            android:textColor="@color/accent_dark"
             android:layout_width="60dp"
-            android:layout_height="30dp"
-            android:backgroundTint="@color/accent_dark"/>
+            android:layout_height="40dp"
+            android:layout_marginRight="5dp"
+            android:textSize="16sp"
+            android:inputType="number"
+            android:translationY="3dp"
+            android:textColor="@color/accent_dark"
+            android:fontFamily="@font/roboto_bold"
+            android:backgroundTint="@color/accent_dark" />
     </LinearLayout>
     <TextView
         android:layout_marginLeft="20dp"
@@ -125,7 +140,7 @@
         android:textSize="24dp"
         android:fontFamily="@font/roboto_medium"
         android:textColor="@color/flat3"
-        android:text="Каллорийность"/>
+        android:text="Время приготовления"/>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -136,21 +151,29 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_gravity="center"
-            android:src="@drawable/search"
+            android:src="@drawable/clock"
             app:tint="@color/accent_dark"
             android:layout_marginRight="5dp"/>
         <TextView
             android:layout_gravity="center"
             android:textColor="@color/accent_light"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
             android:textSize="20sp"
             android:fontFamily="@font/roboto_medium"
+            android:layout_marginRight="5dp"
             android:text="от"/>
         <EditText
             android:layout_gravity="center"
             android:layout_width="60dp"
-            android:layout_height="30dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="5dp"
+            android:textSize="16sp"
+            android:inputType="number"
+            android:translationY="3dp"
+            android:textColor="@color/accent_dark"
+            android:fontFamily="@font/roboto_bold"
             android:backgroundTint="@color/accent_dark" />
         <TextView
             android:layout_gravity="center"
@@ -159,13 +182,19 @@
             android:textSize="20dp"
             android:fontFamily="@font/roboto_medium"
             android:textColor="@color/accent_light"
+            android:layout_marginRight="5dp"
             android:text="до"/>
         <EditText
             android:layout_gravity="center"
-            android:textColor="@color/accent_dark"
             android:layout_width="60dp"
-            android:layout_height="30dp"
-            android:backgroundTint="@color/accent_dark"/>
+            android:layout_height="40dp"
+            android:layout_marginRight="5dp"
+            android:textSize="16sp"
+            android:inputType="number"
+            android:translationY="3dp"
+            android:textColor="@color/accent_dark"
+            android:fontFamily="@font/roboto_bold"
+            android:backgroundTint="@color/accent_dark" />
     </LinearLayout>
     <TextView
         android:layout_marginLeft="20dp"
@@ -174,7 +203,7 @@
         android:textSize="24dp"
         android:fontFamily="@font/roboto_medium"
         android:textColor="@color/flat3"
-        android:text="Каллорийность"/>
+        android:text="Количество порций"/>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -185,21 +214,29 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_gravity="center"
-            android:src="@drawable/search"
+            android:src="@drawable/portion"
             app:tint="@color/accent_dark"
             android:layout_marginRight="5dp"/>
         <TextView
             android:layout_gravity="center"
             android:textColor="@color/accent_light"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
             android:textSize="20sp"
             android:fontFamily="@font/roboto_medium"
+            android:layout_marginRight="5dp"
             android:text="от"/>
         <EditText
             android:layout_gravity="center"
             android:layout_width="60dp"
-            android:layout_height="30dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="5dp"
+            android:textSize="16sp"
+            android:inputType="number"
+            android:translationY="3dp"
+            android:textColor="@color/accent_dark"
+            android:fontFamily="@font/roboto_bold"
             android:backgroundTint="@color/accent_dark" />
         <TextView
             android:layout_gravity="center"
@@ -208,13 +245,19 @@
             android:textSize="20dp"
             android:fontFamily="@font/roboto_medium"
             android:textColor="@color/accent_light"
+            android:layout_marginRight="5dp"
             android:text="до"/>
         <EditText
             android:layout_gravity="center"
-            android:textColor="@color/accent_dark"
             android:layout_width="60dp"
-            android:layout_height="30dp"
-            android:backgroundTint="@color/accent_dark"/>
+            android:layout_height="40dp"
+            android:layout_marginRight="5dp"
+            android:textSize="16sp"
+            android:inputType="number"
+            android:translationY="3dp"
+            android:textColor="@color/accent_dark"
+            android:fontFamily="@font/roboto_bold"
+            android:backgroundTint="@color/accent_dark" />
     </LinearLayout>
     <TextView
         android:layout_marginLeft="20dp"
@@ -223,7 +266,7 @@
         android:textSize="24dp"
         android:fontFamily="@font/roboto_medium"
         android:textColor="@color/flat3"
-        android:text="Каллорийность"/>
+        android:text="Цена"/>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -234,21 +277,29 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_gravity="center"
-            android:src="@drawable/search"
+            android:src="@drawable/ruble"
             app:tint="@color/accent_dark"
             android:layout_marginRight="5dp"/>
         <TextView
             android:layout_gravity="center"
             android:textColor="@color/accent_light"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
             android:textSize="20sp"
             android:fontFamily="@font/roboto_medium"
+            android:layout_marginRight="5dp"
             android:text="от"/>
         <EditText
             android:layout_gravity="center"
             android:layout_width="60dp"
-            android:layout_height="30dp"
+            android:layout_height="40dp"
+            android:layout_marginRight="5dp"
+            android:textSize="16sp"
+            android:inputType="number"
+            android:translationY="3dp"
+            android:textColor="@color/accent_dark"
+            android:fontFamily="@font/roboto_bold"
             android:backgroundTint="@color/accent_dark" />
         <TextView
             android:layout_gravity="center"
@@ -257,14 +308,21 @@
             android:textSize="20dp"
             android:fontFamily="@font/roboto_medium"
             android:textColor="@color/accent_light"
+            android:layout_marginRight="5dp"
             android:text="до"/>
         <EditText
             android:layout_gravity="center"
-            android:textColor="@color/accent_dark"
             android:layout_width="60dp"
-            android:layout_height="30dp"
-            android:backgroundTint="@color/accent_dark"/>
+            android:layout_height="40dp"
+            android:layout_marginRight="5dp"
+            android:textSize="16sp"
+            android:inputType="number"
+            android:translationY="3dp"
+            android:textColor="@color/accent_dark"
+            android:fontFamily="@font/roboto_bold"
+            android:backgroundTint="@color/accent_dark" />
     </LinearLayout>
+
 
     <TextView
         android:layout_marginLeft="20dp"

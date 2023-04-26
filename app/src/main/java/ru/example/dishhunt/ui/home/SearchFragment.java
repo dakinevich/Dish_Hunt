@@ -32,23 +32,21 @@ public class SearchFragment extends Fragment {
 
         binding = SearchBinding.inflate(inflater, container, false);
 
-        String result = getArguments().getString("search_text");
-        binding.searchEditText.setText(result);
+        Bundle bundle = this.getArguments();
+        if (bundle != null) {
+            String result = bundle.getString("search_text", "");
+            binding.searchEditText.setText(result);
+        }
 
         binding.searchBackBtn.setOnClickListener(view -> {
             NavHostFragment.findNavController(this).navigate(R.id.action_searchFragment_to_home);
         });
         binding.searchForwardBtn.setOnClickListener(view -> {
             String search_text = binding.searchEditText.getText().toString();
-            Bundle bundle = new Bundle();
-            bundle.putString("search_text", search_text);
-            NavHostFragment.findNavController(this).navigate(R.id.action_searchFragment_to_resultsFragment, bundle);
+            Bundle bundle_out = new Bundle();
+            bundle_out.putString("search_text", search_text);
+            NavHostFragment.findNavController(this).navigate(R.id.action_searchFragment_to_resultsFragment, bundle_out);
         });
-
-
-
-
-
 
 
         return binding.getRoot();
