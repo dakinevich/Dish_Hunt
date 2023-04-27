@@ -7,23 +7,15 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.NavAction;
-import androidx.navigation.NavDirections;
 import androidx.navigation.fragment.NavHostFragment;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import ru.example.dishhunt.R;
-import ru.example.dishhunt.databinding.HomeBinding;
 import ru.example.dishhunt.databinding.SearchBinding;
-import ru.example.dishhunt.ui.adapters.RecipeListAdapter;
-import ru.example.dishhunt.ui.view_models.RecipeViewModel;
+import ru.example.dishhunt.ui.view_models.RecipePreviewViewModel;
 
 public class SearchFragment extends Fragment {
     private SearchBinding binding;
-    private RecipeViewModel mRecipeViewModel;
+    private RecipePreviewViewModel mRecipePreviewViewModel;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -43,8 +35,16 @@ public class SearchFragment extends Fragment {
         });
         binding.searchForwardBtn.setOnClickListener(view -> {
             String search_text = binding.searchEditText.getText().toString();
+            String search_time_from = binding.searchTimeFrom.getText().toString();
+            String search_time_to = binding.searchTimeTo.getText().toString();
             Bundle bundle_out = new Bundle();
             bundle_out.putString("search_text", search_text);
+            if(!search_time_from.equals("")){
+                bundle_out.putInt("time_from", Integer.parseInt(search_time_from));
+            }
+            if(!search_time_to.equals("")){
+                bundle_out.putInt("time_to", Integer.parseInt(search_time_to));
+            }
             NavHostFragment.findNavController(this).navigate(R.id.action_searchFragment_to_resultsFragment, bundle_out);
         });
 

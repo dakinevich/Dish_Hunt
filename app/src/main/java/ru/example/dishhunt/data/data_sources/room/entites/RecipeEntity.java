@@ -5,6 +5,8 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+import java.util.ArrayList;
+
 import ru.example.dishhunt.data.models.Recipe;
 
 @Entity(tableName = "recipe_table")
@@ -14,71 +16,124 @@ public class RecipeEntity {
     private int id;
 
     @NonNull
-    @ColumnInfo(name = "title")
-    private String mTitle;
-
+    private String Title;
     @NonNull
-    @ColumnInfo(name = "cook_time")
-    private String mCookTime;
-
+    private String Description;
     @NonNull
-    @ColumnInfo(name = "portions")
-    private String mPortions;
+    private int CookTime;
+    @NonNull
+    private int AuthorId;
+    @NonNull
+    private int Views;
+    @NonNull
+    private int Likes;
+    @NonNull
+    private int CookComplexity;
+    @NonNull
+    private int Portions;
 
-    @ColumnInfo(name = "img_src")
-    private String mImgSrc;
+    private String ImgSrc;
 
     public RecipeEntity() {
 
     }
 
-    public RecipeEntity(@NonNull String Title, @NonNull String CookTime, @NonNull String Portions, String ImgSrc) {
-        this.mTitle = Title;
-        this.mCookTime = CookTime;
-        this.mPortions = Portions;
-        this.mImgSrc = ImgSrc;
+    public RecipeEntity(@NonNull String Title, @NonNull String Description, int CookTime, int AuthorId, int Views, int Likes, int CookComplexity, int Portions, String ImgSrc) {
+        this.id = id;
+        this.Title = Title;
+        this.Description = Description;
+        this.CookTime = CookTime;
+        this.AuthorId = AuthorId;
+        this.Views = Views;
+        this.Likes = Likes;
+        this.CookComplexity = CookComplexity;
+        this.Portions = Portions;
+        this.ImgSrc = ImgSrc;
     }
+
     public int getId() {
         return id;
-    }
-
-    public String getTitle() {
-        return mTitle;
-    }
-
-    public String getCookTime() {
-        return mCookTime;
-    }
-
-    public String getPortions() {
-        return mPortions;
-    }
-
-    public String getImgSrc() {
-        return mImgSrc;
     }
 
     public void setId(int id) {
         this.id = id;
     }
 
-    public void setTitle(@NonNull String mTitle) {
-        this.mTitle = mTitle;
+    @NonNull
+    public String getTitle() {
+        return Title;
     }
 
-    public void setCookTime(@NonNull String mCookTime) {
-        this.mCookTime = mCookTime;
+    public void setTitle(@NonNull String title) {
+        Title = title;
     }
 
-    public void setPortions(@NonNull String mPortions) {
-        this.mPortions = mPortions;
+    @NonNull
+    public String getDescription() {
+        return Description;
     }
 
-    public void setImgSrc(String mImgSrc) {
-        this.mImgSrc = mImgSrc;
+    public void setDescription(@NonNull String description) {
+        Description = description;
+    }
+
+    public int getCookTime() {
+        return CookTime;
+    }
+
+    public void setCookTime(int cookTime) {
+        CookTime = cookTime;
+    }
+
+    public int getAuthorId() {
+        return AuthorId;
+    }
+
+    public void setAuthorId(int authorId) {
+        AuthorId = authorId;
+    }
+
+    public int getViews() {
+        return Views;
+    }
+
+    public void setViews(int views) {
+        Views = views;
+    }
+
+    public int getLikes() {
+        return Likes;
+    }
+
+    public void setLikes(int likes) {
+        Likes = likes;
+    }
+
+    public int getCookComplexity() {
+        return CookComplexity;
+    }
+
+    public void setCookComplexity(int cookComplexity) {
+        CookComplexity = cookComplexity;
+    }
+
+    public int getPortions() {
+        return Portions;
+    }
+
+    public void setPortions(int portions) {
+        Portions = portions;
+    }
+
+    public String getImgSrc() {
+        return ImgSrc;
+    }
+
+    public void setImgSrc(String imgSrc) {
+        ImgSrc = imgSrc;
     }
 
     public Recipe toDomainModel() {
-        return new Recipe(mTitle, mCookTime, mPortions, mImgSrc);
+        return new Recipe(id,false, false, AuthorId, Views, Likes, 100, Portions, CookTime, CookComplexity, 0, 0, 0, 0, Title, ImgSrc, Description, "");
     }
 }

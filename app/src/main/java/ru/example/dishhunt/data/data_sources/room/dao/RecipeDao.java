@@ -21,4 +21,10 @@ public interface RecipeDao {
 
     @Query("SELECT * FROM recipe_table ORDER BY title ASC")
     LiveData<List<RecipeEntity>> getAlphabetizedRecipes();
+
+    @Query("SELECT * FROM recipe_table WHERE CookTime BETWEEN :time_from AND :time_to ORDER BY title ASC")
+    LiveData<List<RecipeEntity>> getSearchRecipes(int time_from, int time_to);
+
+    @Query("SELECT * FROM recipe_table WHERE id = :id_m")
+    LiveData<RecipeEntity> getRecipe(int id_m);
 }

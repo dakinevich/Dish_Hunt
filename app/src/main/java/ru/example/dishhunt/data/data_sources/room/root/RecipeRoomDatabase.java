@@ -44,10 +44,10 @@ public abstract class RecipeRoomDatabase extends RoomDatabase {
             databaseWriteExecutor.execute(() -> {
                 RecipeDao dao = INSTANCE.recipeDao();
                 dao.deleteAll();
-                RecipeEntity recipeEntity = new RecipeEntity("Test title", "35m", "4", null);
-                dao.insert(recipeEntity);
                 for(int i = 1; i<15; i++){
-                    recipeEntity = new RecipeEntity("Test title"+i, "35m", "4", null);
+                    RecipeEntity recipeEntity = new RecipeEntity("Default title "+i, "Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться. Lorem Ipsum используют потому, что тот обеспечивает более или менее стандартное заполнение шаблона, а также реальное распределение букв.",
+                            55+i, 1, 3402, 231,
+                            2, 2+i%2, "");
                     dao.insert(recipeEntity);
                 }
 

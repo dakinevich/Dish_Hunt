@@ -165,6 +165,7 @@
             android:layout_marginRight="5dp"
             android:text="от"/>
         <EditText
+            android:id="@+id/search_time_from"
             android:layout_gravity="center"
             android:layout_width="60dp"
             android:layout_height="40dp"
@@ -185,6 +186,7 @@
             android:layout_marginRight="5dp"
             android:text="до"/>
         <EditText
+            android:id="@+id/search_time_to"
             android:layout_gravity="center"
             android:layout_width="60dp"
             android:layout_height="40dp"

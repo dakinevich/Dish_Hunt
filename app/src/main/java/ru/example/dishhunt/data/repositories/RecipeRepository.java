@@ -29,13 +29,28 @@ public class RecipeRepository {
         mRecipeDao = db.recipeDao();
         mAllRecipes = mRecipeDao.getAlphabetizedRecipes();
 
+
     }
 
     // Room executes all queries on a separate thread.
     // Observed LiveData will notify the observer when the data has changed.
     public LiveData<List<Recipe>> getAllRecipes() {
         return Transformations.map(
-                mRecipeDao.getAlphabetizedRecipes(),
+                mAllRecipes,
+                (values) -> values.stream().map(RecipeEntity::toDomainModel).collect(Collectors.toList())
+        );
+    }
+
+    public LiveData<Recipe> getRecipeById(int recipeId) {
+        return Transformations.map(mRecipeDao.getRecipe(recipeId), (value) -> {
+            if (value != null ) {
+                return value.toDomainModel();
+            }
+            return null;
+        });}
+    public LiveData<List<Recipe>> searchRecipes(int time_from, int time_to) {
+        return Transformations.map(
+                mRecipeDao.getSearchRecipes(time_from, time_to),
                 (values) -> values.stream().map(RecipeEntity::toDomainModel).collect(Collectors.toList())
         );
     }
@@ -44,7 +59,7 @@ public class RecipeRepository {
     // You must call this on a non-UI thread or your app will throw an exception. Room ensures
     // that you're not doing any long running operations on the main thread, blocking the UI.
     public void insert(Recipe recipe) {
-        RecipeEntity recipeEntity = new RecipeEntity(recipe.getTitle(),recipe.getCookTime(),recipe.getPortions(),recipe.getImgSrc());
+        RecipeEntity recipeEntity = new RecipeEntity(recipe.getmTitle(), recipe.getmDescription(), recipe.getmCookTime(), recipe.getmAuthorId(),recipe.getmViews(), recipe.getmLikes(), recipe.getmCookComplexity(),recipe.getmPortions(), recipe.getmImgSrc());
         RecipeRoomDatabase.databaseWriteExecutor.execute(() -> {
             mRecipeDao.insert(recipeEntity);
         });
