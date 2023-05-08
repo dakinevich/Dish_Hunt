@@ -39,7 +39,6 @@ public class RecipeEntity {
     }
 
     public RecipeEntity(@NonNull String Title, @NonNull String Description, int CookTime, int AuthorId, int Views, int Likes, int CookComplexity, int Portions, String ImgSrc) {
-        this.id = id;
         this.Title = Title;
         this.Description = Description;
         this.CookTime = CookTime;

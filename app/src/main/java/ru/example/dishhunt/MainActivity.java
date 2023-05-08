@@ -31,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
         setupBottomNav(navController);
 
 
-
     }
 
     private void setupBottomNav(NavController navController){
@@ -40,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
 
                 binding.bottomNavMenu.setVisibility(View.GONE);
             } else {
-
                 binding.bottomNavMenu.setVisibility(View.VISIBLE);
 
             }

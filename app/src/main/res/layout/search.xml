@@ -23,12 +23,12 @@
             android:layout_width="wrap_content"
             android:layout_weight="1"
             android:layout_height="match_parent"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:fontFamily="@font/roboto_medium"
             android:textColorHint="@color/accent_dark"
             android:background="@drawable/rounded_corner_dark_20"
             android:paddingLeft="20dp"
-            android:hint="Поиск"
+            android:hint="@string/search_hint"
             android:drawableTint="@color/accent_light"/>
         <ImageView
             android:id="@+id/search_forward_btn"
@@ -49,8 +49,8 @@
             android:layout_height="36dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Рецепты"
-            android:textSize="20dp"
+            android:text="@string/recipes_section"
+            android:textSize="20sp"
             android:fontFamily="@font/roboto_medium"
             android:textColor="@color/accent_dark"
             android:background="@drawable/rounded_fill_light_20"/>
@@ -63,10 +63,10 @@
             android:layout_height="36dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:fontFamily="@font/roboto_medium"
             android:textColor="@color/flat2"
-            android:text="Коллекции"
+            android:text="@string/collections_section"
             android:background="@drawable/rounded_corner_light_20"/>
     </LinearLayout>
 
@@ -77,7 +77,7 @@
         android:textSize="24dp"
         android:fontFamily="@font/roboto_medium"
         android:textColor="@color/flat3"
-        android:text="Каллорийность"/>
+        android:text="@string/callories"/>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -100,7 +100,7 @@
             android:textSize="20sp"
             android:fontFamily="@font/roboto_medium"
             android:layout_marginRight="5dp"
-            android:text="от"/>
+            android:text="@string/from"/>
         <EditText
             android:layout_gravity="center"
             android:layout_width="60dp"
@@ -116,11 +116,11 @@
             android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:fontFamily="@font/roboto_medium"
             android:textColor="@color/accent_light"
             android:layout_marginRight="5dp"
-            android:text="до"/>
+            android:text="@string/to"/>
         <EditText
             android:layout_gravity="center"
             android:layout_width="60dp"
@@ -140,7 +140,7 @@
         android:textSize="24dp"
         android:fontFamily="@font/roboto_medium"
         android:textColor="@color/flat3"
-        android:text="Время приготовления"/>
+        android:text="@string/recipe_cook_time"/>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -163,7 +163,7 @@
             android:textSize="20sp"
             android:fontFamily="@font/roboto_medium"
             android:layout_marginRight="5dp"
-            android:text="от"/>
+            android:text="@string/from"/>
         <EditText
             android:id="@+id/search_time_from"
             android:layout_gravity="center"
@@ -180,11 +180,11 @@
             android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:fontFamily="@font/roboto_medium"
             android:textColor="@color/accent_light"
             android:layout_marginRight="5dp"
-            android:text="до"/>
+            android:text="@string/to"/>
         <EditText
             android:id="@+id/search_time_to"
             android:layout_gravity="center"
@@ -202,10 +202,10 @@
         android:layout_marginLeft="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="24dp"
+        android:textSize="24sp"
         android:fontFamily="@font/roboto_medium"
         android:textColor="@color/flat3"
-        android:text="Количество порций"/>
+        android:text="@string/recipe_portions_num"/>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -228,7 +228,7 @@
             android:textSize="20sp"
             android:fontFamily="@font/roboto_medium"
             android:layout_marginRight="5dp"
-            android:text="от"/>
+            android:text="@string/from"/>
         <EditText
             android:layout_gravity="center"
             android:layout_width="60dp"
@@ -244,11 +244,11 @@
             android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:fontFamily="@font/roboto_medium"
             android:textColor="@color/accent_light"
             android:layout_marginRight="5dp"
-            android:text="до"/>
+            android:text="@string/to"/>
         <EditText
             android:layout_gravity="center"
             android:layout_width="60dp"
@@ -265,10 +265,10 @@
         android:layout_marginLeft="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="24dp"
+        android:textSize="24sp"
         android:fontFamily="@font/roboto_medium"
         android:textColor="@color/flat3"
-        android:text="Цена"/>
+        android:text="@string/recipe_approx_cost"/>
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -291,7 +291,7 @@
             android:textSize="20sp"
             android:fontFamily="@font/roboto_medium"
             android:layout_marginRight="5dp"
-            android:text="от"/>
+            android:text="@string/from"/>
         <EditText
             android:layout_gravity="center"
             android:layout_width="60dp"
@@ -307,11 +307,11 @@
             android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:fontFamily="@font/roboto_medium"
             android:textColor="@color/accent_light"
             android:layout_marginRight="5dp"
-            android:text="до"/>
+            android:text="@string/to"/>
         <EditText
             android:layout_gravity="center"
             android:layout_width="60dp"
@@ -330,10 +330,10 @@
         android:layout_marginLeft="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="24dp"
+        android:textSize="24sp"
         android:fontFamily="@font/roboto_medium"
         android:textColor="@color/flat3"
-        android:text="Ингридиенты"
+        android:text="@string/ingredients"
         android:layout_marginBottom="20dp"/>
 
     <LinearLayout
@@ -357,7 +357,7 @@
                 android:gravity="center"
                 android:textColor="@color/positive"
                 android:fontFamily="@font/roboto_medium"
-                android:text="Добавить"/>
+                android:text="@string/ingredients_add"/>
         </LinearLayout>
         <ImageView
             android:layout_width="2dp"
@@ -377,7 +377,7 @@
                 android:textSize="24sp"
                 android:textColor="@color/negative"
                 android:fontFamily="@font/roboto_medium"
-                android:text="Убрать"/>
+                android:text="@string/ingredients_remove"/>
         </LinearLayout>
     </LinearLayout>
 

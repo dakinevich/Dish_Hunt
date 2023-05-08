@@ -1,4 +1,4 @@
-package ru.example.dishhunt.ui.saved;
+package ru.example.dishhunt.ui.profile;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -17,27 +17,28 @@ import java.util.stream.Collectors;
 
 import ru.example.dishhunt.R;
 import ru.example.dishhunt.data.models.Recipe;
-import ru.example.dishhunt.databinding.SavedBinding;
+import ru.example.dishhunt.databinding.ProfileRecipesBinding;
 import ru.example.dishhunt.databinding.SavedRecipesBinding;
 import ru.example.dishhunt.ui.adapters.RecipeListAdapter;
 import ru.example.dishhunt.ui.home.RecyclerViewInterface;
+import ru.example.dishhunt.ui.view_models.ProfileRecipesViewModel;
 import ru.example.dishhunt.ui.view_models.SavedViewModel;
 
-public class SavedRecipes extends Fragment implements RecyclerViewInterface {
-    private SavedViewModel mSavedViewModel;
-    private SavedRecipesBinding binding;
+public class ProfileRecipesFragment extends Fragment implements RecyclerViewInterface {
+    private ProfileRecipesViewModel mProfileRecipesViewModel;
+    private ProfileRecipesBinding binding;
     private RecipeListAdapter adapter;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = SavedRecipesBinding.inflate(inflater, container, false);
+        binding = ProfileRecipesBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
 
 
         //RecyclerView
-        RecyclerView recyclerView = view.findViewById(R.id.saved_recyclerview);
+        RecyclerView recyclerView = view.findViewById(R.id.profile_recyclerview);
         adapter = new RecipeListAdapter(new RecipeListAdapter.RecipeDiff(), this);
         recyclerView.setAdapter(adapter);
         //recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -45,16 +46,10 @@ public class SavedRecipes extends Fragment implements RecyclerViewInterface {
         recyclerView.setLayoutManager(mLayoutManager);
 
         //ViewModel
-        mSavedViewModel = new ViewModelProvider(requireActivity()).get(SavedViewModel.class);
+        mProfileRecipesViewModel = new ViewModelProvider(requireActivity()).get(ProfileRecipesViewModel.class);
 
-        mSavedViewModel.getSavedRecipes().observe(requireActivity(), combo -> {
-            List<Recipe> recipes = combo.first;
-            recipes.forEach((elem) -> {
-                elem.setmIsSaved(combo.second.contains(elem.getId()));
-            });
-            adapter.submitList(recipes.stream()
-                    .filter(Recipe::ismIsSaved)
-                    .collect(Collectors.toList()));
+        mProfileRecipesViewModel.getUserRecipes().observe(requireActivity(), recipes -> {
+            adapter.submitList(recipes);
         });
         return view;
     }
@@ -64,18 +59,17 @@ public class SavedRecipes extends Fragment implements RecyclerViewInterface {
     public void onCardClick(int card_id) {
         Bundle bundle = new Bundle();
         bundle.putInt("recipe_id", card_id);
-        NavHostFragment.findNavController(this).navigate(R.id.action_saved_to_recipeCardFragment, bundle);
+        NavHostFragment.findNavController(this).navigate(R.id.action_profile_to_recipeCardFragment, bundle);
     }
 
     @Override
     public void onSaveClick(int card_id, boolean saved) {
         if (saved){
-            mSavedViewModel.removeWishlist(card_id);
+            mProfileRecipesViewModel.removeWishlist(card_id);
         }
         else {
-            mSavedViewModel.addWishlist(card_id);
+            mProfileRecipesViewModel.addWishlist(card_id);
 
         }
     }
 }
-

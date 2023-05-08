@@ -1,3 +1,33 @@
 <resources>
     <string name="app_name">Dish Hunt</string>
+    <string name="search_hint">Поиск</string>
+    <string name="latest_section">Недавно просметренные</string>
+    <string name="fast_cook_section">Приготовьте за 20 минкт</string>
+    <string name="email_hint">email</string>
+    <string name="pass_hint">пароль</string>
+    <string name="create_acc_btn">Создать</string>
+    <string name="app_name_logo">Dish Hunt</string>
+    <string name="log_in_section">Войти</string>
+    <string name="create_acc_section">Создать</string>
+    <string name="forgot_pass">Забыли пароль?</string>
+    <string name="log_in_btn">Войти</string>
+    <string name="recipes_section">Рецепты</string>
+    <string name="collections_section">Коллекции</string>
+    <string name="views">просмотров</string>
+    <string name="recipe_complexity">Сложность</string>
+    <string name="recipe_cook_time">Время приготовления</string>
+    <string name="recipe_portions_num">Колличество порций</string>
+    <string name="recipe_approx_cost">Примерная стоимость</string>
+    <string name="recipe_possible_allerg">Возможные аллергены</string>
+    <string name="callories">Каллории</string>
+    <string name="squirrels">Белки</string>
+    <string name="fats">Жиры</string>
+    <string name="carbohydrates">Углеводы</string>
+    <string name="ingredients">Ингридиенты</string>
+    <string name="additionally">Дополнително</string>
+    <string name="comments">Комментарии</string>
+    <string name="from">от</string>
+    <string name="to">до</string>
+    <string name="ingredients_add">Добавить</string>
+    <string name="ingredients_remove">Убрать</string>
 </resources>

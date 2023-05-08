@@ -1,6 +1,7 @@
 package ru.example.dishhunt.data.models;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Recipe {
     static class IngredientRow{
@@ -14,6 +15,8 @@ public class Recipe {
     private int mAuthorId, mViews, mLikes, mPrice, mPortions, mCookTime, mCookComplexity, mCalories, mProteins, mFats, mCarbohydrates;
     private String mTitle, mImgSrc, mDescription, mAuthorsName;
     private ArrayList<IngredientRow> mIngredientRow;
+    private List<Comment> mComments;
+    public  Recipe(){}
 
     public Recipe(int id, boolean mIsSaved, boolean mIsLiked, int mAuthorId, int mViews, int mLikes, int mPrice, int mPortions, int mCookTime, int mCookComplexity, int mCalories, int mProteins, int mFats, int mCarbohydrates, String mTitle, String mImgSrc, String mDescription, String mAuthorsName) {
         this.id = id;
@@ -35,6 +38,14 @@ public class Recipe {
         this.mDescription = mDescription;
         this.mAuthorsName = mAuthorsName;
         this.mIngredientRow = mIngredientRow;
+    }
+
+    public List<Comment> getmComments() {
+        return mComments;
+    }
+
+    public void setmComments(List<Comment> mComments) {
+        this.mComments = mComments;
     }
 
     public int getId() {

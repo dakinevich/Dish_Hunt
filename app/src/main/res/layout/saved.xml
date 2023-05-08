@@ -15,8 +15,8 @@
             android:layout_height="36dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Рецепты"
-            android:textSize="20dp"
+            android:text="@string/recipes_section"
+            android:textSize="20sp"
             android:fontFamily="@font/roboto_medium"
             android:textColor="@color/accent_dark"
             android:background="@drawable/rounded_fill_light_20"/>
@@ -29,10 +29,10 @@
             android:layout_height="36dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:fontFamily="@font/roboto_medium"
             android:textColor="@color/flat2"
-            android:text="Коллекции"
+            android:text="@string/collections_section"
             android:background="@drawable/rounded_corner_light_20"/>
     </LinearLayout>
 

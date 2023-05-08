@@ -17,12 +17,20 @@
         android:id="@+id/saved"
         android:name="ru.example.dishhunt.ui.saved.SavedFragment"
         android:label="SavedFragment"
-        tools:layout="@layout/saved"/>
+        tools:layout="@layout/saved">
+        <action
+            android:id="@+id/action_saved_to_recipeCardFragment"
+            app:destination="@id/recipeCardFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profile"
         android:name="ru.example.dishhunt.ui.profile.ProfileFragment"
         android:label="ProfileFragment"
-        tools:layout="@layout/profile"/>
+        tools:layout="@layout/profile">
+        <action
+            android:id="@+id/action_profile_to_recipeCardFragment"
+            app:destination="@id/recipeCardFragment" />
+    </fragment>
     <fragment
         android:id="@+id/settings"
         android:name="ru.example.dishhunt.ui.settings.SettingsFragment"
@@ -64,5 +72,8 @@
         <action
             android:id="@+id/action_recipeCardFragment_to_resultsFragment"
             app:destination="@id/resultsFragment" />
+        <action
+            android:id="@+id/action_recipeCardFragment_to_saved"
+            app:destination="@id/saved" />
     </fragment>
 </navigation>

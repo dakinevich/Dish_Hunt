@@ -13,30 +13,30 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:fontFamily="@font/roboto_bold"
             android:textColorHint="@color/accent_light"
             android:background="@drawable/rounded_corner_light_20"
             android:paddingLeft="20dp"
             android:layout_marginBottom="20dp"
             android:inputType="text"
-            android:hint="email" />
+            android:hint="@string/email_hint" />
         <EditText
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:fontFamily="@font/roboto_bold"
             android:textColorHint="@color/accent_light"
             android:background="@drawable/rounded_corner_light_20"
             android:paddingLeft="20dp"
             android:inputType="textPassword"
             android:layout_marginBottom="10dp"
-            android:hint="пароль" />
+            android:hint="@string/pass_hint" />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Забыли пароль?"
-            android:textSize="20dp"
+            android:text="@string/forgot_pass"
+            android:textSize="20sp"
             android:fontFamily="@font/roboto_bold"
             android:textColor="@color/accent_dark"
             android:gravity="center"/>
@@ -47,9 +47,9 @@
         android:layout_gravity="bottom"
         android:backgroundTint="@color/accent_dark"
         android:background="@drawable/rounded_back_20"
-        android:textSize="24dp"
+        android:textSize="24sp"
         android:textAllCaps="false"
         android:fontFamily="@font/roboto_bold"
         android:letterSpacing="0"
-        android:text="Войти" />
+        android:text="@string/log_in_btn" />
 </LinearLayout>

@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/background"
     android:orientation="vertical">
     <LinearLayout
@@ -18,8 +19,9 @@
         <Space
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"></Space>
+            android:layout_weight="1"/>
         <ImageView
+            android:id="@+id/recipe_card_save_btn"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_margin="10dp"
@@ -32,7 +34,7 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:text="Селедка под шубой"
-        android:textSize="32dp"
+        android:textSize="32sp"
         android:textColor="@color/flat4"
         android:fontFamily="@font/roboto_medium"
         android:gravity="center"
@@ -51,7 +53,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/recipe_card_img"
+                    android:id="@+id/recipe_card_img_container"
                     app:layout_constraintTop_toTopOf="parent"
                     app:cardCornerRadius="20dp"
                     app:cardElevation="7dp"
@@ -59,6 +61,8 @@
                     android:layout_marginBottom="10dp"
                     android:layout_marginHorizontal="20dp">
                     <ImageView
+                        android:id="@+id/recipe_card_img"
+
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:adjustViewBounds="true"
@@ -75,7 +79,7 @@
                     android:layout_marginHorizontal="20dp"
                     app:contentPaddingTop="40dp"
                     android:layout_marginTop="-40dp"
-                    app:layout_constraintTop_toBottomOf="@+id/recipe_card_img">
+                    app:layout_constraintTop_toBottomOf="@+id/recipe_card_img_container">
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -88,14 +92,24 @@
                             android:src="@drawable/eye"
                             app:tint="@color/accent_dark" />
                         <TextView
+                            android:id="@+id/recipe_card_views"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="5"
                             android:layout_gravity="center"
                             android:textColor="@color/accent_dark"
                             android:fontFamily="@font/roboto_medium"
-                            android:textSize="16dp"
-                            android:text="345 просмотров"/>
+                            android:textSize="16sp"
+                            android:text="345"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="5"
+                            android:layout_marginLeft="5dp"
+                            android:layout_gravity="center"
+                            android:textColor="@color/accent_dark"
+                            android:fontFamily="@font/roboto_medium"
+                            android:textSize="16sp"
+                            android:text="@string/views"/>
                         <ImageView
                             android:layout_width="25dp"
                             android:layout_height="25dp"
@@ -103,6 +117,7 @@
                             android:src="@drawable/like"
                             app:tint="@color/accent_dark" />
                         <TextView
+                            android:id="@+id/recipe_card_likes"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -159,6 +174,7 @@
                     android:layout_height="match_parent"
                     android:orientation="horizontal">
                     <ImageView
+                        android:id="@+id/recipe_card_author_img"
                         android:layout_gravity="center"
                         android:layout_marginLeft="20dp"
                         android:layout_width="40dp"
@@ -166,6 +182,7 @@
                         android:layout_marginRight="20dp"
                         android:background="@drawable/rounded_back_60"/>
                     <TextView
+                        android:id="@+id/recipe_card_author_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -194,7 +211,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/roboto_medium"
                         android:textColor="@color/flat4"
-                        android:text="Сложность"/>
+                        android:text="@string/recipe_complexity"/>
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -223,7 +240,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/roboto_medium"
                         android:textColor="@color/flat4"
-                        android:text="Время приготовления"/>
+                        android:text="@string/recipe_cook_time"/>
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -237,19 +254,27 @@
                             android:src="@drawable/clock"
                             app:tint="@color/accent_light" />
                         <TextView
+                            android:id="@+id/recipe_card_cook_time"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="50 минут"
+                            android:text="50"
                             android:textColor="@color/flat3"
                             android:fontFamily="@font/roboto_medium"
-                            android:textSize="14dp"/>
+                            android:textSize="14sp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=" минут"
+                            android:textColor="@color/flat3"
+                            android:fontFamily="@font/roboto_medium"
+                            android:textSize="14sp"/>
                     </LinearLayout>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/roboto_medium"
                         android:textColor="@color/flat4"
-                        android:text="Колличество порций"/>
+                        android:text="@string/recipe_portions_num"/>
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -263,19 +288,27 @@
                             android:src="@drawable/portion"
                             app:tint="@color/accent_light" />
                         <TextView
+                            android:id="@+id/recipe_card_portions"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="4 порции"
+                            android:text="4"
                             android:textColor="@color/flat3"
                             android:fontFamily="@font/roboto_medium"
-                            android:textSize="14dp"/>
+                            android:textSize="14sp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=" порции"
+                            android:textColor="@color/flat3"
+                            android:fontFamily="@font/roboto_medium"
+                            android:textSize="14sp"/>
                     </LinearLayout>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/roboto_medium"
                         android:textColor="@color/flat4"
-                        android:text="Примерная стоимость"/>
+                        android:text="@string/recipe_approx_cost"/>
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -289,19 +322,27 @@
                             android:src="@drawable/ruble"
                             app:tint="@color/accent_light" />
                         <TextView
+                            android:id="@+id/recipe_card_price"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="320 рублей"
+                            android:text="320"
                             android:textColor="@color/flat3"
                             android:fontFamily="@font/roboto_medium"
-                            android:textSize="14dp"/>
+                            android:textSize="14sp"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=" рублей"
+                            android:textColor="@color/flat3"
+                            android:fontFamily="@font/roboto_medium"
+                            android:textSize="14sp"/>
                     </LinearLayout>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/roboto_medium"
                         android:textColor="@color/flat4"
-                        android:text="Возможные аллергены"/>
+                        android:text="@string/recipe_possible_allerg"/>
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -310,14 +351,14 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="14dp"
+                            android:textSize="14sp"
                             android:textColor="@color/negative"
                             android:fontFamily="@font/roboto_medium"
                             android:text="Морковь"/>
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textSize="14dp"
+                            android:textSize="14sp"
                             android:textColor="@color/negative"
                             android:fontFamily="@font/roboto_medium"
                             android:text="Селедка"/>
@@ -334,6 +375,7 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="70dp"
                     android:layout_height="70dp"
+                    android:layout_marginBottom="10dp"
                     android:backgroundTint="@color/accent_dark"
                     app:cardCornerRadius="10dp">
                     <LinearLayout
@@ -345,7 +387,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
                             android:textAlignment="center"
-                            android:text="Каллории"
+                            android:text="@string/callories"
                             android:layout_marginBottom="5dp"
                             android:textSize="12sp"
                             android:textColor="@color/background"
@@ -377,6 +419,8 @@
                 <androidx.cardview.widget.CardView
                     android:layout_width="70dp"
                     android:layout_height="70dp"
+                    android:layout_marginBottom="10dp"
+
                     android:backgroundTint="@color/accent_dark"
                     app:cardCornerRadius="10dp">
                     <LinearLayout
@@ -388,7 +432,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
                             android:textAlignment="center"
-                            android:text="Белки"
+                            android:text="@string/squirrels"
                             android:layout_marginBottom="5dp"
 
                             android:textSize="12sp"
@@ -420,6 +464,7 @@
                     android:layout_weight="1"/>
                 <androidx.cardview.widget.CardView
                     android:layout_width="70dp"
+                    android:layout_marginBottom="10dp"
                     android:layout_height="70dp"
                     android:backgroundTint="@color/accent_dark"
                     app:cardCornerRadius="10dp">
@@ -432,7 +477,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
                             android:textAlignment="center"
-                            android:text="Жиры"
+                            android:text="@string/fats"
                             android:layout_marginBottom="5dp"
 
                             android:textSize="12sp"
@@ -464,6 +509,7 @@
                     android:layout_weight="1"/>
                 <androidx.cardview.widget.CardView
                     android:layout_width="70dp"
+                    android:layout_marginBottom="10dp"
                     android:layout_height="70dp"
                     android:backgroundTint="@color/accent_dark"
                     app:cardCornerRadius="10dp">
@@ -476,7 +522,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
                             android:textAlignment="center"
-                            android:text="Углеводы"
+                            android:text="@string/carbohydrates"
                             android:layout_marginBottom="5dp"
 
                             android:textSize="12sp"
@@ -523,7 +569,7 @@
                         android:fontFamily="@font/roboto_medium"
                         android:textSize="16sp"
                         android:textColor="@color/flat4"
-                        android:text="Ингридиенты"
+                        android:text="@string/ingredients"
                         android:layout_marginBottom="10dp"/>
                     <TableLayout
                         android:layout_width="wrap_content"
@@ -587,7 +633,7 @@
                         android:fontFamily="@font/roboto_medium"
                         android:textColor="@color/flat4"
                         android:layout_marginBottom="10dp"
-                        android:text="Дополнително"/>
+                        android:text="@string/additionally"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -615,20 +661,28 @@
                 android:textSize="20sp"
                 android:layout_marginBottom="10dp"
                 android:textColor="@color/flat4"
-                android:text="Комментарии"/>
-            <LinearLayout
+                android:text="@string/comments"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/comments_recyclerview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:listitem="@layout/comment"
+                android:paddingHorizontal="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            <EditText
+                android:id="@+id/recipe_my_comment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:paddingBottom="50dp"
-                android:orientation="vertical">
-                <include layout="@layout/comment"/>
-                <include layout="@layout/comment"/>
-                <include layout="@layout/comment"/>
-                <include layout="@layout/comment"/>
-
-
-            </LinearLayout>
+                android:hint="Ваш комментарий"/>
+            <TextView
+                android:id="@+id/recipe_add_comment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Добавить"/>
         </LinearLayout>
     </ScrollView>
     <!-- <androidx.viewpager2.widget.ViewPager2

@@ -11,10 +11,13 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import ru.example.dishhunt.R;
 import ru.example.dishhunt.data.data_sources.room.dao.RecipeDao;
+import ru.example.dishhunt.data.data_sources.room.entites.CommentEntity;
 import ru.example.dishhunt.data.data_sources.room.entites.RecipeEntity;
+import ru.example.dishhunt.data.data_sources.room.entites.UserSavedRecipes;
 
-@Database(entities = {RecipeEntity.class}, version = 1, exportSchema = false)
+@Database(entities = {RecipeEntity.class, CommentEntity.class, UserSavedRecipes.class}, version = 1, exportSchema = false)
 public abstract class RecipeRoomDatabase extends RoomDatabase {
 
     public abstract RecipeDao recipeDao();
@@ -47,9 +50,12 @@ public abstract class RecipeRoomDatabase extends RoomDatabase {
                 for(int i = 1; i<15; i++){
                     RecipeEntity recipeEntity = new RecipeEntity("Default title "+i, "Давно выяснено, что при оценке дизайна и композиции читаемый текст мешает сосредоточиться. Lorem Ipsum используют потому, что тот обеспечивает более или менее стандартное заполнение шаблона, а также реальное распределение букв.",
                             55+i, 1, 3402, 231,
-                            2, 2+i%2, "");
-                    dao.insert(recipeEntity);
+                            2, 2+i%2, ""+ R.drawable.sample_food);
+                    dao.insertRecipe(recipeEntity);
+                    CommentEntity commentEntity = new CommentEntity(i, 0, "baseComent",  12222);
+                    dao.insertComment(commentEntity);
                 }
+                dao.insertUserSavedRecipesIds(new UserSavedRecipes(1,1));
 
             });
         }
