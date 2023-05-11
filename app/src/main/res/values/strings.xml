@@ -30,4 +30,9 @@
     <string name="to">до</string>
     <string name="ingredients_add">Добавить</string>
     <string name="ingredients_remove">Убрать</string>
+    <string name="comment_hint">Введите комментарий</string>
+    <string name="my_id">my_id</string>
+    <string name="main_shared_preferences_name">main</string>
+
+
 </resources>

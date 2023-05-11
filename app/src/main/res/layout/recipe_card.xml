@@ -29,6 +29,7 @@
             android:src="@drawable/bookmark"
             app:tint="@color/accent_light" />
     </LinearLayout>
+
     <TextView
         android:id="@+id/recipe_card_title"
         android:layout_width="match_parent"
@@ -61,12 +62,12 @@
                     android:layout_marginBottom="10dp"
                     android:layout_marginHorizontal="20dp">
                     <ImageView
+                        android:background="@color/flat2"
                         android:id="@+id/recipe_card_img"
-
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:adjustViewBounds="true"
-                        android:src="@drawable/sample_food"/>
+                        android:src="@drawable/sample_food_1"/>
 
                 </androidx.cardview.widget.CardView>
                 <androidx.cardview.widget.CardView
@@ -111,13 +112,13 @@
                             android:textSize="16sp"
                             android:text="@string/views"/>
                         <ImageView
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
+                            android:layout_width="23dp"
+                            android:layout_height="23dp"
                             android:layout_weight="1"
-                            android:src="@drawable/like"
+                            android:src="@drawable/bookmark"
                             app:tint="@color/accent_dark" />
                         <TextView
-                            android:id="@+id/recipe_card_likes"
+                            android:id="@+id/recipe_card_save_count"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
@@ -170,6 +171,7 @@
                 android:layout_marginBottom="20dp"
                 android:layout_marginHorizontal="20dp">
                 <LinearLayout
+                    android:id="@+id/recipe_card_author_container"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal">
@@ -218,21 +220,24 @@
                         android:layout_marginLeft="15dp"
                         android:layout_marginBottom="10dp">
                         <ImageView
+                            android:id="@+id/recipe_hat1"
                             android:layout_width="16dp"
                             android:layout_height="16dp"
                             android:layout_marginRight="5dp"
-                            android:src="@drawable/hat_chef_empty"
+                            android:src="@drawable/hat_empty"
                             app:tint="@color/flat3" />
                         <ImageView
+                            android:id="@+id/recipe_hat2"
                             android:layout_width="16dp"
                             android:layout_height="16dp"
                             android:layout_marginRight="5dp"
-                            android:src="@drawable/hat_chef_empty"
+                            android:src="@drawable/hat_empty"
                             app:tint="@color/flat3"/>
                         <ImageView
+                            android:id="@+id/recipe_hat3"
                             android:layout_width="16dp"
                             android:layout_height="16dp"
-                            android:src="@drawable/hat_chef_empty"
+                            android:src="@drawable/hat_empty"
                             app:tint="@color/flat3"/>
                     </LinearLayout>
                     <TextView
@@ -261,13 +266,7 @@
                             android:textColor="@color/flat3"
                             android:fontFamily="@font/roboto_medium"
                             android:textSize="14sp"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text=" минут"
-                            android:textColor="@color/flat3"
-                            android:fontFamily="@font/roboto_medium"
-                            android:textSize="14sp"/>
+
                     </LinearLayout>
                     <TextView
                         android:layout_width="wrap_content"
@@ -337,40 +336,12 @@
                             android:fontFamily="@font/roboto_medium"
                             android:textSize="14sp"/>
                     </LinearLayout>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/roboto_medium"
-                        android:textColor="@color/flat4"
-                        android:text="@string/recipe_possible_allerg"/>
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:orientation="vertical">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="14sp"
-                            android:textColor="@color/negative"
-                            android:fontFamily="@font/roboto_medium"
-                            android:text="Морковь"/>
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="14sp"
-                            android:textColor="@color/negative"
-                            android:fontFamily="@font/roboto_medium"
-                            android:text="Селедка"/>
-
-                    </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="20dp"
-                android:layout_marginBottom="20dp"
                 android:orientation="horizontal">
                 <androidx.cardview.widget.CardView
                     android:layout_width="70dp"
@@ -396,6 +367,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="6dp"
+                            android:layout_marginBottom="6dp"
                             app:cardCornerRadius="10dp"
                             android:backgroundTint="@color/accent_light">
                             <TextView
@@ -442,6 +414,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="6dp"
+                            android:layout_marginBottom="6dp"
                             app:cardCornerRadius="10dp"
                             android:backgroundTint="@color/accent_light">
                             <TextView
@@ -487,6 +460,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="6dp"
+                            android:layout_marginBottom="6dp"
                             app:cardCornerRadius="10dp"
                             android:backgroundTint="@color/accent_light">
                             <TextView
@@ -532,6 +506,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="6dp"
+                            android:layout_marginBottom="6dp"
                             app:cardCornerRadius="10dp"
                             android:backgroundTint="@color/accent_light">
                             <TextView
@@ -571,62 +546,29 @@
                         android:textColor="@color/flat4"
                         android:text="@string/ingredients"
                         android:layout_marginBottom="10dp"/>
-                    <TableLayout
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recipe_ingredient_container"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                    <LinearLayout
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content">
-                        <TableRow android:layout_marginBottom="5dp">
-                            <TextView
-                                android:layout_width="80dp"
-                                android:text="Морковь"
-                                android:fontFamily="@font/roboto_medium"
-                                android:textSize="14sp"
-                                android:textColor="@color/flat2"/>
-                            <TextView android:text="300г"
-                                android:fontFamily="@font/roboto_medium"
-                                android:textSize="14sp"
-                                android:textColor="@color/accent_light"/>
-                        </TableRow>
-                        <TableRow android:layout_marginBottom="5dp">
-                            <TextView
-                                android:layout_width="80dp"
-                                android:text="Морковь"
-                                android:fontFamily="@font/roboto_medium"
-                                android:textSize="14sp"
-                                android:textColor="@color/flat2"/>
-                            <TextView android:text="300г"
-                                android:fontFamily="@font/roboto_medium"
-                                android:textSize="14sp"
-                                android:textColor="@color/accent_light"/>
-                        </TableRow>
-                        <TableRow android:layout_marginBottom="5dp">
-                            <TextView
-                                android:layout_width="80dp"
-                                android:text="Морковь"
-                                android:fontFamily="@font/roboto_medium"
-                                android:textSize="14sp"
-                                android:textColor="@color/flat2"/>
-                            <TextView android:text="300г"
-                                android:fontFamily="@font/roboto_medium"
-                                android:textSize="14sp"
-                                android:textColor="@color/accent_light"/>
-                        </TableRow>
-
-
-                        <TableRow
-                            android:layout_marginTop="10dp"
-                            android:layout_marginBottom="10dp">
-                            <TextView
-                                android:layout_width="80dp"
-                                android:text="Итого"
-                                android:fontFamily="@font/roboto_medium"
-                                android:textSize="14sp"
-                                android:textColor="@color/flat2"/>
-                            <TextView android:text="1550г"
-                                android:fontFamily="@font/roboto_medium"
-                                android:textSize="14sp"
-                                android:textColor="@color/accent_dark"/>
-                        </TableRow>
-                    </TableLayout>
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <TextView
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:text="Итого"
+                            android:fontFamily="@font/roboto_medium"
+                            android:textSize="14sp"
+                            android:textColor="@color/flat2"/>
+                        <TextView android:text="1550г"
+                            android:id="@+id/ingredients_total_weight"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_medium"
+                            android:textSize="14sp"
+                            android:textColor="@color/accent_dark"/>
+                    </LinearLayout>
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -636,6 +578,7 @@
                         android:text="@string/additionally"/>
 
                     <TextView
+                        android:id="@+id/recipe_card_ingredients_description"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/roboto_medium"
@@ -650,7 +593,7 @@
                 android:id="@+id/recipe_card_viewpager"
                 android:layout_width="match_parent"
                 android:layout_marginBottom="20dp"
-                android:layout_height="300dp">
+                android:layout_height="wrap_content">
 
             </androidx.viewpager2.widget.ViewPager2>
             <TextView
@@ -663,6 +606,43 @@
                 android:textColor="@color/flat4"
                 android:text="@string/comments"/>
 
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="40dp"
+                android:layout_marginBottom="20dp">
+                <EditText
+                    android:id="@+id/recipe_my_comment"
+                    android:layout_width="match_parent"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="60dp"
+                    android:paddingVertical="10dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:textAlignment="textStart"
+                    android:layout_height="match_parent"
+                    android:textSize="16sp"
+                    android:layout_gravity="center"
+                    android:textColor="@color/flat4"
+                    android:background="@drawable/rounded_fill_flat2_10"
+                    android:textColorHint="@color/flat4"
+                    android:fontFamily="@font/roboto_bold"
+                    android:defaultFocusHighlightEnabled="false"
+                    android:hint="@string/comment_hint"/>
+                <ImageView
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignTop="@id/recipe_my_comment"
+                    android:id="@+id/recipe_add_comment"
+                    android:layout_width="30dp"
+                    android:layout_marginTop="8dp"
+                    android:src="@drawable/add"
+                    android:layout_height="30dp"
+                    android:layout_marginRight="30dp"
+
+                    app:tint="@color/accent_dark" />
+            </RelativeLayout>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/comments_recyclerview"
                 android:layout_width="match_parent"
@@ -673,16 +653,7 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
-            <EditText
-                android:id="@+id/recipe_my_comment"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="Ваш комментарий"/>
-            <TextView
-                android:id="@+id/recipe_add_comment"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Добавить"/>
+
         </LinearLayout>
     </ScrollView>
     <!-- <androidx.viewpager2.widget.ViewPager2

@@ -1,5 +1,6 @@
 package ru.example.dishhunt.ui.profile;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,21 +14,19 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import ru.example.dishhunt.R;
 import ru.example.dishhunt.data.models.Recipe;
 import ru.example.dishhunt.databinding.ProfileRecipesBinding;
-import ru.example.dishhunt.databinding.SavedRecipesBinding;
 import ru.example.dishhunt.ui.adapters.RecipeListAdapter;
-import ru.example.dishhunt.ui.home.RecyclerViewInterface;
+import ru.example.dishhunt.ui.home.RecipeClickInterface;
 import ru.example.dishhunt.ui.view_models.ProfileRecipesViewModel;
-import ru.example.dishhunt.ui.view_models.SavedViewModel;
 
-public class ProfileRecipesFragment extends Fragment implements RecyclerViewInterface {
+public class ProfileRecipesFragment extends Fragment implements RecipeClickInterface {
     private ProfileRecipesViewModel mProfileRecipesViewModel;
     private ProfileRecipesBinding binding;
     private RecipeListAdapter adapter;
+    private int userId;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -36,7 +35,12 @@ public class ProfileRecipesFragment extends Fragment implements RecyclerViewInte
         binding = ProfileRecipesBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
 
-
+        userId = requireActivity().getSharedPreferences(getString(R.string.main_shared_preferences_name), Context.MODE_PRIVATE).getInt(getString(R.string.my_id), 1);
+        assert getParentFragment() != null;
+        Bundle bundle =  getParentFragment().getArguments();
+        if (bundle != null) {
+            userId = bundle.getInt("user_id", userId);
+        }
         //RecyclerView
         RecyclerView recyclerView = view.findViewById(R.id.profile_recyclerview);
         adapter = new RecipeListAdapter(new RecipeListAdapter.RecipeDiff(), this);
@@ -47,8 +51,11 @@ public class ProfileRecipesFragment extends Fragment implements RecyclerViewInte
 
         //ViewModel
         mProfileRecipesViewModel = new ViewModelProvider(requireActivity()).get(ProfileRecipesViewModel.class);
-
-        mProfileRecipesViewModel.getUserRecipes().observe(requireActivity(), recipes -> {
+        mProfileRecipesViewModel.getUserRecipes(userId).observe(requireActivity(), combo -> {
+            List<Recipe> recipes = combo.first;
+            recipes.forEach((elem) -> {
+                elem.setmIsSaved(combo.second.contains(elem.getId()));
+            });
             adapter.submitList(recipes);
         });
         return view;
@@ -59,7 +66,16 @@ public class ProfileRecipesFragment extends Fragment implements RecyclerViewInte
     public void onCardClick(int card_id) {
         Bundle bundle = new Bundle();
         bundle.putInt("recipe_id", card_id);
-        NavHostFragment.findNavController(this).navigate(R.id.action_profile_to_recipeCardFragment, bundle);
+        Fragment p = getParentFragment();
+        if (p != null &
+                p.getParentFragment() != null &
+                p.getParentFragment().getClass()== MyProfileContainerFragment.class){
+            NavHostFragment.findNavController(this).navigate(R.id.action_my_profile_to_recipeCardFragment, bundle);
+        }
+        else{
+            NavHostFragment.findNavController(this).navigate(R.id.action_profile_to_recipeCardFragment, bundle);
+        }
+
     }
 
     @Override

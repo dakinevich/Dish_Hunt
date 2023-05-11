@@ -1,28 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background">
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        app:fabCustomSize="60dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="65dp"
-        android:backgroundTint="@color/accent_light"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:src="@drawable/add"
-        app:tint="@color/accent_dark">
-    </com.google.android.material.floatingactionbutton.FloatingActionButton>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/background"
-        android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/background"
+    android:orientation="vertical">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background"
+        android:id="@+id/profile_up_bar">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -30,7 +18,8 @@
             android:layout_marginTop="-60dp"
             android:paddingTop="60dp"
             android:orientation="vertical"
-            android:layout_marginBottom="10dp">
+            android:layout_marginBottom="10dp"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
             <ImageView
                 android:layout_width="150dp"
                 android:layout_height="150dp"
@@ -39,6 +28,7 @@
                 android:layout_marginVertical="20dp"
                 app:tint="@color/flat1" />
             <TextView
+                android:id="@+id/profile_user_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
@@ -48,6 +38,7 @@
                 android:text="Виктория Сикрет"
                 android:textSize="24sp"/>
             <TextView
+                android:id="@+id/profile_user_bio"
                 android:layout_width="250dp"
                 android:layout_gravity="center"
                 android:layout_height="wrap_content"
@@ -58,10 +49,12 @@
                 android:text="Quisque vel vulputate lectus. Vivamus maximus vitae sapien nec ornare. Etiam vel malesuada turpis. Aliquam aliquet laoreet viverra. In et quam in nisl lobortis lobortis. Nulla eu varius purus, sed mattis enim. "
                 android:textSize="14sp"/>
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="20dp"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginVertical="10dp"
             android:orientation="horizontal">
             <TextView
                 android:id="@+id/profile_recipes_btn"
@@ -85,16 +78,21 @@
                 android:gravity="center"
                 android:textSize="20sp"
                 android:fontFamily="@font/roboto_medium"
-                android:textColor="@color/flat2"
+                android:textColor="@color/flat3"
                 android:text="@string/collections_section"
-                android:background="@drawable/rounded_corner_light_20"/>
+                android:background="@drawable/rounded_corner_dark_20"/>
         </LinearLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
-
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
         <androidx.fragment.app.FragmentContainerView
             android:id="@+id/profile_fragment_container"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="wrap_content"/>
+    </androidx.core.widget.NestedScrollView>
 
-    </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

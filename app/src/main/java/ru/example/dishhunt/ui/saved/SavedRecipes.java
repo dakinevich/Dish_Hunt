@@ -17,13 +17,12 @@ import java.util.stream.Collectors;
 
 import ru.example.dishhunt.R;
 import ru.example.dishhunt.data.models.Recipe;
-import ru.example.dishhunt.databinding.SavedBinding;
 import ru.example.dishhunt.databinding.SavedRecipesBinding;
 import ru.example.dishhunt.ui.adapters.RecipeListAdapter;
-import ru.example.dishhunt.ui.home.RecyclerViewInterface;
+import ru.example.dishhunt.ui.home.RecipeClickInterface;
 import ru.example.dishhunt.ui.view_models.SavedViewModel;
 
-public class SavedRecipes extends Fragment implements RecyclerViewInterface {
+public class SavedRecipes extends Fragment implements RecipeClickInterface {
     private SavedViewModel mSavedViewModel;
     private SavedRecipesBinding binding;
     private RecipeListAdapter adapter;

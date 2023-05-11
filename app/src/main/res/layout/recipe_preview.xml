@@ -50,7 +50,7 @@
                 android:layout_width="133dp"
                 android:layout_height="92dp"
                 android:cropToPadding="false"
-                android:src="@drawable/sample_food"
+                android:src="@drawable/sample_food_1"
                 android:scaleType="centerCrop"/>
         </androidx.cardview.widget.CardView>
 

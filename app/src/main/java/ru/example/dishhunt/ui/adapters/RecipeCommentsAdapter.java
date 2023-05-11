@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.ListAdapter;
 
 
 import ru.example.dishhunt.data.models.Comment;
+import ru.example.dishhunt.ui.ViewHolders.RecipeCommentsViewHolder;
 
 public class RecipeCommentsAdapter extends ListAdapter<Comment, RecipeCommentsViewHolder> {
 

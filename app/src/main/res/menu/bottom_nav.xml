@@ -10,7 +10,7 @@
         android:title="Saved" />
     <item
         android:icon="@drawable/user"
-        android:id="@+id/profile"
+        android:id="@+id/my_profile"
         android:title="Profile" />
     <item
         android:icon="@drawable/settings"

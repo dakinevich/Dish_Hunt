@@ -6,7 +6,10 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
 
+import ru.example.dishhunt.data.models.Ingredient;
 import ru.example.dishhunt.data.models.Recipe;
 
 @Entity(tableName = "recipe_table")
@@ -20,13 +23,13 @@ public class RecipeEntity {
     @NonNull
     private String Description;
     @NonNull
+    private String IngredientsDescription;
+    @NonNull
     private int CookTime;
     @NonNull
     private int AuthorId;
     @NonNull
     private int Views;
-    @NonNull
-    private int Likes;
     @NonNull
     private int CookComplexity;
     @NonNull
@@ -38,16 +41,25 @@ public class RecipeEntity {
 
     }
 
-    public RecipeEntity(@NonNull String Title, @NonNull String Description, int CookTime, int AuthorId, int Views, int Likes, int CookComplexity, int Portions, String ImgSrc) {
+    public RecipeEntity(@NonNull String Title, @NonNull String Description, int CookTime, int AuthorId, int Views, int CookComplexity, int Portions, String ImgSrc, String ingredientsDescription) {
         this.Title = Title;
         this.Description = Description;
         this.CookTime = CookTime;
         this.AuthorId = AuthorId;
         this.Views = Views;
-        this.Likes = Likes;
         this.CookComplexity = CookComplexity;
         this.Portions = Portions;
         this.ImgSrc = ImgSrc;
+        this.IngredientsDescription = ingredientsDescription;
+    }
+
+    @NonNull
+    public String getIngredientsDescription() {
+        return IngredientsDescription;
+    }
+
+    public void setIngredientsDescription(@NonNull String ingredientsDescription) {
+        IngredientsDescription = ingredientsDescription;
     }
 
     public int getId() {
@@ -100,14 +112,6 @@ public class RecipeEntity {
         Views = views;
     }
 
-    public int getLikes() {
-        return Likes;
-    }
-
-    public void setLikes(int likes) {
-        Likes = likes;
-    }
-
     public int getCookComplexity() {
         return CookComplexity;
     }
@@ -132,7 +136,13 @@ public class RecipeEntity {
         ImgSrc = imgSrc;
     }
 
-    public Recipe toDomainModel() {
-        return new Recipe(id,false, false, AuthorId, Views, Likes, 100, Portions, CookTime, CookComplexity, 0, 0, 0, 0, Title, ImgSrc, Description, "");
+    public Recipe toDomainModel(List<IngredientWithProduct> ingredientsWithProduct) {
+        List<Ingredient> ingredients = ingredientsWithProduct.stream().map(val->{
+            return val.ingredientEntity.toDomainModel(val.productEntity);
+        }).collect(Collectors.toList());
+        return new Recipe(id, false, AuthorId, Views, 0, 0,
+                Portions, CookTime, CookComplexity, 0, 0, 0,
+                0, Title, ImgSrc, Description, ingredients, IngredientsDescription);
+
     }
 }

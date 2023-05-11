@@ -1,8 +1,6 @@
-package ru.example.dishhunt.ui.adapters;
+package ru.example.dishhunt.ui.ViewHolders;
 
 import android.annotation.SuppressLint;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,7 +34,7 @@ public class RecipeCommentsViewHolder extends RecyclerView.ViewHolder {
         commentViewTitle.setText(comment.getText());
     }
 
-    static RecipeCommentsViewHolder create(ViewGroup parent) {
+    public static RecipeCommentsViewHolder create(ViewGroup parent) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.comment, parent, false);
         return new RecipeCommentsViewHolder(view);

@@ -31,20 +31,23 @@ public class SearchFragment extends Fragment {
         }
 
         binding.searchBackBtn.setOnClickListener(view -> {
-            NavHostFragment.findNavController(this).navigate(R.id.action_searchFragment_to_home);
+            NavHostFragment.findNavController(this).navigateUp();
         });
         binding.searchForwardBtn.setOnClickListener(view -> {
             String search_text = binding.searchEditText.getText().toString();
             String search_time_from = binding.searchTimeFrom.getText().toString();
             String search_time_to = binding.searchTimeTo.getText().toString();
+            String search_portions_from = binding.searchPortionsFrom.getText().toString();
+            String search_portions_to = binding.searchPortionsTo.getText().toString();
+
             Bundle bundle_out = new Bundle();
             bundle_out.putString("search_text", search_text);
-            if(!search_time_from.equals("")){
-                bundle_out.putInt("time_from", Integer.parseInt(search_time_from));
-            }
-            if(!search_time_to.equals("")){
-                bundle_out.putInt("time_to", Integer.parseInt(search_time_to));
-            }
+
+            if(!search_time_from.equals("")){bundle_out.putInt("time_from", Integer.parseInt(search_time_from));}
+            if(!search_time_to.equals("")){bundle_out.putInt("time_to", Integer.parseInt(search_time_to));}
+            if(!search_portions_from.equals("")){bundle_out.putInt("portions_from", Integer.parseInt(search_portions_from));}
+            if(!search_portions_to.equals("")){bundle_out.putInt("portions_to", Integer.parseInt(search_portions_to));}
+
             NavHostFragment.findNavController(this).navigate(R.id.action_searchFragment_to_resultsFragment, bundle_out);
         });
 

@@ -3,6 +3,7 @@ package ru.example.dishhunt.data.repositories;
 
 
 import android.app.Application;
+import android.util.Log;
 import android.util.Pair;
 
 import androidx.lifecycle.LiveData;
@@ -16,16 +17,21 @@ import java.util.stream.Collectors;
 import ru.example.dishhunt.data.data_sources.room.dao.RecipeDao;
 import ru.example.dishhunt.data.data_sources.room.entites.CommentEntity;
 import ru.example.dishhunt.data.data_sources.room.entites.IngredientEntity;
+import ru.example.dishhunt.data.data_sources.room.entites.ProductEntity;
 import ru.example.dishhunt.data.data_sources.room.entites.RecipeEntity;
+import ru.example.dishhunt.data.data_sources.room.entites.RecipeWithIngredients;
+import ru.example.dishhunt.data.data_sources.room.entites.UserEntity;
 import ru.example.dishhunt.data.data_sources.room.entites.UserSavedRecipes;
 import ru.example.dishhunt.data.data_sources.room.root.RecipeRoomDatabase;
 import ru.example.dishhunt.data.models.Comment;
+import ru.example.dishhunt.data.models.Ingredient;
 import ru.example.dishhunt.data.models.Recipe;
+import ru.example.dishhunt.data.models.User;
 
 public class RecipeRepository {
 
     private RecipeDao mRecipeDao;
-    private LiveData<List<RecipeEntity>> mAllRecipes;
+    private LiveData<List<RecipeWithIngredients>> mAllRecipes;
 
     // Note that in order to unit test the WordRepository, you have to remove the Application
     // dependency. This adds complexity and much more code, and this sample is not about testing.
@@ -44,14 +50,22 @@ public class RecipeRepository {
     public LiveData<List<Recipe>> getAllRecipes() {
         return Transformations.map(
                 mAllRecipes,
-                (values) -> values.stream().map(RecipeEntity::toDomainModel).collect(Collectors.toList())
+                (values) -> values.stream().map(value ->
+                        value.recipeEntity.toDomainModel(value.ingredientWithProduct))
+                        .collect(Collectors.toList())
         );
     }
+    public LiveData<List<ProductEntity>> getAllProducts() {
+        return  mRecipeDao.getAllProducts();
+    }
+
 
     public LiveData<Recipe> getRecipeById(int recipeId) {
         return Transformations.map(
                 mRecipeDao.getRecipe(recipeId),
-                (values) -> values.toDomainModel());
+                value -> {
+                    Log.e("qwe", value.recipeEntity.getTitle());
+                    return value.recipeEntity.toDomainModel(value.ingredientWithProduct);});
     }
     public LiveData<List<Comment>> getRecipeCommentsById(int recipeId) {
         return Transformations.map(
@@ -59,10 +73,12 @@ public class RecipeRepository {
                 (values) -> values.stream().map(CommentEntity::toDomainModel).collect(Collectors.toList()));
 
     }
-    public LiveData<List<Recipe>> searchRecipes(int time_from, int time_to) {
+    public LiveData<List<Recipe>> searchRecipes(int time_from, int time_to, int portions_from, int portions_to) {
         return Transformations.map(
-                mRecipeDao.getSearchRecipes(time_from, time_to),
-                (values) -> values.stream().map(RecipeEntity::toDomainModel)
+                mRecipeDao.getSearchRecipes(time_from, time_to, portions_from, portions_to),
+                (values) -> values.stream().map(value -> {
+                    return value.recipeEntity.toDomainModel(value.ingredientWithProduct);
+                        })
                         .collect(Collectors.toList())
         );
     }
@@ -70,7 +86,42 @@ public class RecipeRepository {
     public LiveData<List<Recipe>> getUserRecipes(int user_id) {
         return Transformations.map(
                 mRecipeDao.getUserRecipes(user_id),
-                (values) -> values.stream().map(RecipeEntity::toDomainModel)
+                (values) -> values.stream().map(value -> {
+                            return value.recipeEntity.toDomainModel(value.ingredientWithProduct);
+                        })
+                        .collect(Collectors.toList())
+        );
+    }
+    public LiveData<User> getRecipeAuthor(int recipe_id){
+        return Transformations.map(
+                mRecipeDao.getUserByRecipeId(recipe_id),
+                UserEntity::toDomainModel);
+    }
+    public LiveData<Integer> getSavedCount(int recipe_id){
+        return mRecipeDao.getSavedCount(recipe_id);
+    }
+    public LiveData<User> getUser(int user_id){
+        Log.e("qwe", "requesting user inside repositiory");
+        return Transformations.map(
+                mRecipeDao.getUser(user_id),
+                elem -> {
+                    UserEntity e = elem;
+                    if(e == null){
+                        return new User("ща сек", "момент буквально","");
+                    }
+                    return e.toDomainModel();
+                });
+    }
+    public void updateViewsOnRecipe(int recipe_id){
+        mRecipeDao.updateViewsOnRecipe(recipe_id);
+    }
+    public LiveData<List<Ingredient>> getIngredients(int recipe_id){
+        return Transformations.map(
+                mRecipeDao.getIngredients(recipe_id),
+                (values) -> values.stream().map(value-> {
+                    return value.ingredientEntity
+                            .toDomainModel(value.productEntity);
+                        })
                         .collect(Collectors.toList())
         );
     }
@@ -80,13 +131,11 @@ public class RecipeRepository {
     }
 
 
+
     // You must call this on a non-UI thread or your app will throw an exception. Room ensures
     // that you're not doing any long running operations on the main thread, blocking the UI.
     public void insertRecipe(Recipe recipe) {
-        RecipeEntity recipeEntity = new RecipeEntity(recipe.getmTitle(), recipe.getmDescription(), recipe.getmCookTime(), recipe.getmAuthorId(),recipe.getmViews(), recipe.getmLikes(), recipe.getmCookComplexity(),recipe.getmPortions(), recipe.getmImgSrc());
-        RecipeRoomDatabase.databaseWriteExecutor.execute(() -> {
-            mRecipeDao.insertRecipe(recipeEntity);
-        });
+        mRecipeDao.insertRecipeWithIngredients(recipe);
     }
     public void insertComment(Comment comment) {
         CommentEntity commentEntity = new CommentEntity(comment.getRecipeId(), comment.getAuthorId(), comment.getText(), comment.getPubTime());

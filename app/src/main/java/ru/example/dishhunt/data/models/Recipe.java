@@ -3,28 +3,24 @@ package ru.example.dishhunt.data.models;
 import java.util.ArrayList;
 import java.util.List;
 
+import ru.example.dishhunt.data.data_sources.room.entites.ProductEntity;
+
 public class Recipe {
-    static class IngredientRow{
-        String productName;
-        int amount;
-        String amountType;
-    }
+
 
     private int id;
-    private boolean mIsSaved, mIsLiked;
-    private int mAuthorId, mViews, mLikes, mPrice, mPortions, mCookTime, mCookComplexity, mCalories, mProteins, mFats, mCarbohydrates;
-    private String mTitle, mImgSrc, mDescription, mAuthorsName;
-    private ArrayList<IngredientRow> mIngredientRow;
+    private boolean mIsSaved;
+    private int mSaveCount, mAuthorId, mViews, mPrice, mPortions, mCookTime, mCookComplexity, mCalories, mProteins, mFats, mCarbohydrates;
+    private String mTitle, mImgSrc, mDescription, mIngredientsDescription;
     private List<Comment> mComments;
+    private List<Ingredient> mIngredients;
     public  Recipe(){}
 
-    public Recipe(int id, boolean mIsSaved, boolean mIsLiked, int mAuthorId, int mViews, int mLikes, int mPrice, int mPortions, int mCookTime, int mCookComplexity, int mCalories, int mProteins, int mFats, int mCarbohydrates, String mTitle, String mImgSrc, String mDescription, String mAuthorsName) {
+    public Recipe(int id, boolean mIsSaved, int mAuthorId, int mViews, int mSaveCount, int mPrice, int mPortions, int mCookTime, int mCookComplexity, int mCalories, int mProteins, int mFats, int mCarbohydrates, String mTitle, String mImgSrc, String mDescription, List<Ingredient> mIngredients, String mIngredientsDescription) {
         this.id = id;
         this.mIsSaved = mIsSaved;
-        this.mIsLiked = mIsLiked;
         this.mAuthorId = mAuthorId;
         this.mViews = mViews;
-        this.mLikes = mLikes;
         this.mPrice = mPrice;
         this.mPortions = mPortions;
         this.mCookTime = mCookTime;
@@ -36,8 +32,35 @@ public class Recipe {
         this.mTitle = mTitle;
         this.mImgSrc = mImgSrc;
         this.mDescription = mDescription;
-        this.mAuthorsName = mAuthorsName;
-        this.mIngredientRow = mIngredientRow;
+        this.mIngredients = mIngredients;
+        this.mSaveCount = mSaveCount;
+        this.mIngredientsDescription = mIngredientsDescription;
+    }
+
+    public boolean addIngredient(ProductEntity product){
+        for (int i = 0; i<mIngredients.size(); i++ ){
+            if (mIngredients.get(i).getProduct().getId() == product.getId()){
+                return false;
+            }
+        }
+        this.mIngredients.add(new Ingredient(id, 1, product));
+        return true;
+    }
+
+    public String getmIngredientsDescription() {
+        return mIngredientsDescription;
+    }
+
+    public void setmIngredientsDescription(String mIngredientsDescription) {
+        this.mIngredientsDescription = mIngredientsDescription;
+    }
+
+    public int getmSaveCount() {
+        return mSaveCount;
+    }
+
+    public void setmSaveCount(int mSaveCount) {
+        this.mSaveCount = mSaveCount;
     }
 
     public List<Comment> getmComments() {
@@ -64,14 +87,6 @@ public class Recipe {
         this.mIsSaved = mIsSaved;
     }
 
-    public boolean ismIsLiked() {
-        return mIsLiked;
-    }
-
-    public void setmIsLiked(boolean mIsLiked) {
-        this.mIsLiked = mIsLiked;
-    }
-
     public int getmAuthorId() {
         return mAuthorId;
     }
@@ -88,13 +103,6 @@ public class Recipe {
         this.mViews = mViews;
     }
 
-    public int getmLikes() {
-        return mLikes;
-    }
-
-    public void setmLikes(int mLikes) {
-        this.mLikes = mLikes;
-    }
 
     public int getmPrice() {
         return mPrice;
@@ -184,19 +192,29 @@ public class Recipe {
         this.mDescription = mDescription;
     }
 
-    public String getmAuthorsName() {
-        return mAuthorsName;
+    public List<Ingredient> getmIngredients() {
+        return mIngredients;
     }
 
-    public void setmAuthorsName(String mAuthorsName) {
-        this.mAuthorsName = mAuthorsName;
+    public void setmIngredients(List<Ingredient> mIngredients) {
+        this.mIngredients = mIngredients;
     }
 
-    public ArrayList<IngredientRow> getmIngredientRow() {
-        return mIngredientRow;
+    public void editIngredientAmount(Ingredient ingredient, int amount){
+        for (int i = 0; i<mIngredients.size(); i++ ){
+            if (ingredient.equals(mIngredients.get(i))){
+                mIngredients.get(i).setAmount(amount);
+                break;
+            }
+        }
     }
 
-    public void setmIngredientRow(ArrayList<IngredientRow> mIngredientRow) {
-        this.mIngredientRow = mIngredientRow;
+    public void deleteIngredient(Ingredient ingredient){
+        for (int i = 0; i<mIngredients.size(); i++ ){
+            if (ingredient.equals(mIngredients.get(i))){
+                mIngredients.remove(i);
+                break;
+            }
+        }
     }
 }

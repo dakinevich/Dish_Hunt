@@ -51,8 +51,8 @@ public class SavedFragment extends Fragment {
         btn.setTextColor(getResources().getColor(R.color.accent_dark, getResources().newTheme()));
     }
     private void btn_unpressed(TextView btn){
-        btn.setBackgroundResource(R.drawable.rounded_corner_light_20);
-        btn.setTextColor(getResources().getColor(R.color.flat2, getResources().newTheme()));
+        btn.setBackgroundResource(R.drawable.rounded_corner_dark_20);
+        btn.setTextColor(getResources().getColor(R.color.flat3, getResources().newTheme()));
     }
     private void replaceFragment(Fragment fragment){
         getChildFragmentManager().beginTransaction()

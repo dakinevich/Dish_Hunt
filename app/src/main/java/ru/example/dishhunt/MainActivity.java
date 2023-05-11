@@ -6,6 +6,8 @@ import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.NavigationUI;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 
@@ -19,7 +21,14 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        getApplicationContext().deleteDatabase("recipe_database");
+       getApplicationContext().deleteDatabase("recipe_database");
+
+        SharedPreferences sharedPref = this.getSharedPreferences(getString(R.string.main_shared_preferences_name), Context.MODE_PRIVATE);
+        if (sharedPref.getInt(getString(R.string.my_id),0) == 0){
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putInt(getString(R.string.my_id), 1);
+            editor.apply();
+        }
 
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
@@ -35,8 +44,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupBottomNav(NavController navController){
         navController.addOnDestinationChangedListener((navController1, navDestination, bundle) -> {
-            if(navDestination.getId() == R.id.recipeCardFragment) {
-
+            if(navDestination.getId() == R.id.recipeCardFragment
+                    | navDestination.getId() == R.id.searchProductsFragment
+                    | navDestination.getId() == R.id.createRecipeFragment) {
                 binding.bottomNavMenu.setVisibility(View.GONE);
             } else {
                 binding.bottomNavMenu.setVisibility(View.VISIBLE);

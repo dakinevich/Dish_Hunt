@@ -1,6 +1,8 @@
 package ru.example.dishhunt.ui.view_models;
 
 import android.app.Application;
+import android.content.Context;
+import android.content.res.Resources;
 import android.util.Pair;
 
 import androidx.lifecycle.AndroidViewModel;
@@ -10,32 +12,47 @@ import androidx.lifecycle.MediatorLiveData;
 import java.util.Collections;
 import java.util.List;
 
+import ru.example.dishhunt.R;
 import ru.example.dishhunt.data.models.Recipe;
+import ru.example.dishhunt.data.models.User;
 import ru.example.dishhunt.data.repositories.RecipeRepository;
 
 
 public class RecipeCardViewModel extends AndroidViewModel {
     private RecipeRepository mRepository;
     private final LiveData<List<Integer>> mSavedRecipes;
+    private int MyId;
 
     public RecipeCardViewModel(Application application) {
         super(application);
         mRepository = new RecipeRepository(application);
-        mSavedRecipes = mRepository.getUserSavedRecipesIds(1);// TODO user id
+        Resources resources = getApplication().getResources();
+        MyId = getApplication().getSharedPreferences(resources.getString(R.string.main_shared_preferences_name), Context.MODE_PRIVATE).getInt(resources.getString(R.string.my_id), 1);
+        mSavedRecipes = mRepository.getUserSavedRecipesIds(MyId);
     }
 
     public LiveData<List<Recipe>> getAllRecipes() { return mRepository.getAllRecipes(); }
     public CombinedLiveData getRecipeById(int id) {
         return new CombinedLiveData(mRepository.getRecipeById(id), mSavedRecipes);}
+    public LiveData<User> getAuthor(int recipe_id){
+        return mRepository.getRecipeAuthor(recipe_id);
+    }
 
     public void addWishlist(int id) {
-        mRepository.insertUserSavedRecipe(id, 1);
-    }
-    // TODO we
-    public void removeWishlist(int id) {
-        mRepository.deleteUserSavedRecipe(id, 1);
+        mRepository.insertUserSavedRecipe(id, MyId);
     }
 
+    public void removeWishlist(int id) {
+        mRepository.deleteUserSavedRecipe(id, MyId);
+    }
+
+    public void recipeChecked(int recipe_id){
+        mRepository.updateViewsOnRecipe(recipe_id);
+    }
+
+    public LiveData<Integer> getSavedCount(int recipe_id) {
+        return mRepository.getSavedCount(recipe_id);
+    }
 
     public void insert(Recipe recipe) { mRepository.insertRecipe(recipe); }
 

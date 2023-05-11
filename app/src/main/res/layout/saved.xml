@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     android:orientation="vertical">
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,9 +32,9 @@
             android:gravity="center"
             android:textSize="20sp"
             android:fontFamily="@font/roboto_medium"
-            android:textColor="@color/flat2"
+            android:textColor="@color/flat3"
             android:text="@string/collections_section"
-            android:background="@drawable/rounded_corner_light_20"/>
+            android:background="@drawable/rounded_corner_dark_20"/>
     </LinearLayout>
 
 

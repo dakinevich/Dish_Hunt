@@ -1,6 +1,8 @@
 package ru.example.dishhunt.ui.view_models;
 
 import android.app.Application;
+import android.content.Context;
+import android.content.res.Resources;
 import android.util.Pair;
 
 import androidx.lifecycle.AndroidViewModel;
@@ -15,6 +17,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+import ru.example.dishhunt.R;
 import ru.example.dishhunt.data.data_sources.room.entites.UserSavedRecipes;
 import ru.example.dishhunt.data.models.Recipe;
 import ru.example.dishhunt.data.repositories.RecipeRepository;
@@ -24,29 +27,33 @@ public class RecipePreviewViewModel extends AndroidViewModel {
 
     private final LiveData<List<Recipe>> mAllRecipes;
     private final LiveData<List<Integer>> mSavedRecipes;
+    private int MyId;
 
 
     public RecipePreviewViewModel(Application application) {
         super(application);
+        Resources resources = getApplication().getResources();
+        MyId = getApplication().getSharedPreferences(resources.getString(R.string.main_shared_preferences_name), Context.MODE_PRIVATE).getInt(resources.getString(R.string.my_id), 1);
         mRepository = new RecipeRepository(application);
         mAllRecipes = mRepository.getAllRecipes();
-        mSavedRecipes = mRepository.getUserSavedRecipesIds(1);// TODO user id
+        mSavedRecipes = mRepository.getUserSavedRecipesIds(MyId);
+
     }
 
 
     public LiveData<List<Recipe>> getAllRecipes() {
         return mAllRecipes; }
-    // TODO Recipe saved set mb relations
-    public CombinedLiveData searchRecipes(int time_from, int time_to) {
-        return new CombinedLiveData(mRepository.searchRecipes(time_from, time_to), mSavedRecipes);
+
+    public CombinedLiveData searchRecipes(int time_from, int time_to, int portions_from, int portions_to) {
+        return new CombinedLiveData(mRepository.searchRecipes(time_from, time_to, portions_from, portions_to), mSavedRecipes);
 
     }
     public void addWishlist(int id) {
-        mRepository.insertUserSavedRecipe(id, 1);
+        mRepository.insertUserSavedRecipe(id, MyId);
     }
-    // TODO we
+
     public void removeWishlist(int id) {
-        mRepository.deleteUserSavedRecipe(id, 1);
+        mRepository.deleteUserSavedRecipe(id, MyId);
     }
 
 

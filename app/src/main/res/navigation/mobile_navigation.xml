@@ -25,8 +25,7 @@
     <fragment
         android:id="@+id/profile"
         android:name="ru.example.dishhunt.ui.profile.ProfileFragment"
-        android:label="ProfileFragment"
-        tools:layout="@layout/profile">
+        android:label="ProfileFragment">
         <action
             android:id="@+id/action_profile_to_recipeCardFragment"
             app:destination="@id/recipeCardFragment" />
@@ -75,5 +74,34 @@
         <action
             android:id="@+id/action_recipeCardFragment_to_saved"
             app:destination="@id/saved" />
+        <action
+            android:id="@+id/action_recipeCardFragment_to_profile"
+            app:destination="@id/profile" />
     </fragment>
+    <fragment
+        android:id="@+id/my_profile"
+        android:name="ru.example.dishhunt.ui.profile.MyProfileContainerFragment"
+        android:label="MyProfileContainerFragment" >
+        <action
+            android:id="@+id/action_myProfileContainerFragment_to_profile"
+            app:destination="@id/profile" />
+        <action
+            android:id="@+id/action_my_profile_to_recipeCardFragment"
+            app:destination="@id/recipeCardFragment" />
+        <action
+            android:id="@+id/action_my_profile_to_createRecipeFragment"
+            app:destination="@id/createRecipeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createRecipeFragment"
+        android:name="ru.example.dishhunt.ui.recipe_creator.CreateRecipeFragment"
+        android:label="CreateRecipeFragment" >
+        <action
+            android:id="@+id/action_createRecipeFragment_to_searchProductsFragment"
+            app:destination="@id/searchProductsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchProductsFragment"
+        android:name="ru.example.dishhunt.ui.recipe_creator.SearchProductsFragment"
+        android:label="SearchProductsFragment" />
 </navigation>

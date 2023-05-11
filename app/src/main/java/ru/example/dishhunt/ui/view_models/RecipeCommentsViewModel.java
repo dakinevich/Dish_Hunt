@@ -8,6 +8,7 @@ import androidx.lifecycle.LiveData;
 import java.util.List;
 
 import ru.example.dishhunt.data.models.Comment;
+import ru.example.dishhunt.data.models.Ingredient;
 import ru.example.dishhunt.data.models.Recipe;
 import ru.example.dishhunt.data.repositories.RecipeRepository;
 
@@ -19,11 +20,8 @@ public class RecipeCommentsViewModel extends AndroidViewModel {
         super(application);
         mRepository = new RecipeRepository(application);
     }
-
-
     public LiveData<List<Comment>> getRecipeCommentsById(int id) { return mRepository.getRecipeCommentsById(id); }
     public void addComment(Comment comment) {
         mRepository.insertComment(comment);
     }
-
 }

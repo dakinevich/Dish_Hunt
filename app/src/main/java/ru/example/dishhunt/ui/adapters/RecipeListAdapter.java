@@ -1,7 +1,5 @@
 package ru.example.dishhunt.ui.adapters;
 
-import android.util.Log;
-import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -9,20 +7,21 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 
 import ru.example.dishhunt.data.models.Recipe;
-import ru.example.dishhunt.ui.home.RecyclerViewInterface;
+import ru.example.dishhunt.ui.ViewHolders.RecipeViewHolder;
+import ru.example.dishhunt.ui.home.RecipeClickInterface;
 
 public class RecipeListAdapter extends ListAdapter<Recipe, RecipeViewHolder>{
 
-    private final RecyclerViewInterface recyclerViewInterface;
+    private final RecipeClickInterface recipeClickInterface;
 
-    public RecipeListAdapter(@NonNull DiffUtil.ItemCallback<Recipe> diffCallback, RecyclerViewInterface recyclerViewInterface) {
+    public RecipeListAdapter(@NonNull DiffUtil.ItemCallback<Recipe> diffCallback, RecipeClickInterface recipeClickInterface) {
         super(diffCallback);
-        this.recyclerViewInterface = recyclerViewInterface;
+        this.recipeClickInterface = recipeClickInterface;
     }
 
     @Override
     public RecipeViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return RecipeViewHolder.create(parent, recyclerViewInterface);
+        return RecipeViewHolder.create(parent, recipeClickInterface);
     }
 
     @Override

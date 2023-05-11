@@ -116,6 +116,7 @@
                 android:paddingTop="10dp"
 
                 android:orientation="vertical">
+                <!--
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -126,7 +127,7 @@
                     android:fontFamily="@font/roboto_bold"
                     android:textColor="@color/accent_dark"/>
                 <include layout="@layout/collection_preview"/>
-
+                   -->
             </LinearLayout>
         </LinearLayout>
 
