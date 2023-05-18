@@ -18,9 +18,9 @@ import java.util.List;
 import ru.example.dishhunt.R;
 import ru.example.dishhunt.data.models.Recipe;
 import ru.example.dishhunt.databinding.ProfileRecipesBinding;
-import ru.example.dishhunt.ui.adapters.RecipeListAdapter;
-import ru.example.dishhunt.ui.home.RecipeClickInterface;
-import ru.example.dishhunt.ui.view_models.ProfileRecipesViewModel;
+import ru.example.dishhunt.ui.search.adapters.RecipeListAdapter;
+import ru.example.dishhunt.ui.search.RecipeClickInterface;
+import ru.example.dishhunt.ui.profile.view_models.ProfileRecipesViewModel;
 
 public class ProfileRecipesFragment extends Fragment implements RecipeClickInterface {
     private ProfileRecipesViewModel mProfileRecipesViewModel;

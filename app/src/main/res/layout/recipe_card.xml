@@ -41,6 +41,7 @@
         android:gravity="center"
         android:layout_marginBottom="20dp"/>
     <ScrollView
+        android:paddingBottom="60dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
@@ -370,16 +371,31 @@
                             android:layout_marginBottom="6dp"
                             app:cardCornerRadius="10dp"
                             android:backgroundTint="@color/accent_light">
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:textColor="@color/background"
-                                android:fontFamily="@font/roboto_medium"
-                                android:textSize="12sp"
-                                android:textAlignment="center"
-                                android:text="2000
-                                ккал"/>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+                                <TextView
+                                    android:id="@+id/recipe_card_calories"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:textColor="@color/background"
+                                    android:fontFamily="@font/roboto_medium"
+                                    android:textSize="12sp"
+                                    android:textAlignment="center"
+                                    android:text="200"/>
+                                <TextView
+                                    android:text="ккал"
+                                    android:layout_gravity="center"
+                                    android:textColor="@color/background"
+                                    android:fontFamily="@font/roboto_medium"
+                                    android:textSize="12sp"
+                                    android:textAlignment="center"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                            </LinearLayout>
+
                         </androidx.cardview.widget.CardView>
                     </LinearLayout>
 
@@ -417,16 +433,30 @@
                             android:layout_marginBottom="6dp"
                             app:cardCornerRadius="10dp"
                             android:backgroundTint="@color/accent_light">
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:textColor="@color/background"
-                                android:fontFamily="@font/roboto_medium"
-                                android:textSize="12sp"
-                                android:textAlignment="center"
-                                android:text="2000
-                                ккал"/>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+                                <TextView
+                                    android:id="@+id/recipe_card_proteins"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:textColor="@color/background"
+                                    android:fontFamily="@font/roboto_medium"
+                                    android:textSize="12sp"
+                                    android:textAlignment="center"
+                                    android:text="200"/>
+                                <TextView
+                                    android:text="грамм"
+                                    android:layout_gravity="center"
+                                    android:textColor="@color/background"
+                                    android:fontFamily="@font/roboto_medium"
+                                    android:textSize="12sp"
+                                    android:textAlignment="center"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                            </LinearLayout>
                         </androidx.cardview.widget.CardView>
                     </LinearLayout>
 
@@ -463,16 +493,30 @@
                             android:layout_marginBottom="6dp"
                             app:cardCornerRadius="10dp"
                             android:backgroundTint="@color/accent_light">
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:textColor="@color/background"
-                                android:fontFamily="@font/roboto_medium"
-                                android:textSize="12sp"
-                                android:textAlignment="center"
-                                android:text="2000
-                                ккал"/>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+                                <TextView
+                                    android:id="@+id/recipe_card_fats"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:textColor="@color/background"
+                                    android:fontFamily="@font/roboto_medium"
+                                    android:textSize="12sp"
+                                    android:textAlignment="center"
+                                    android:text="200"/>
+                                <TextView
+                                    android:text="грамм"
+                                    android:layout_gravity="center"
+                                    android:textColor="@color/background"
+                                    android:fontFamily="@font/roboto_medium"
+                                    android:textSize="12sp"
+                                    android:textAlignment="center"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                            </LinearLayout>
                         </androidx.cardview.widget.CardView>
                     </LinearLayout>
 
@@ -509,16 +553,31 @@
                             android:layout_marginBottom="6dp"
                             app:cardCornerRadius="10dp"
                             android:backgroundTint="@color/accent_light">
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center"
-                                android:textColor="@color/background"
-                                android:fontFamily="@font/roboto_medium"
-                                android:textSize="12sp"
-                                android:textAlignment="center"
-                                android:text="2000
-                                ккал"/>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+                                <TextView
+                                    android:id="@+id/recipe_card_carbohydrates"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    android:textColor="@color/background"
+                                    android:fontFamily="@font/roboto_medium"
+                                    android:textSize="12sp"
+                                    android:textAlignment="center"
+                                    android:text="200"/>
+                                <TextView
+                                    android:text="грамм"
+                                    android:layout_gravity="center"
+                                    android:textColor="@color/background"
+                                    android:fontFamily="@font/roboto_medium"
+                                    android:textSize="12sp"
+                                    android:textAlignment="center"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"/>
+                            </LinearLayout>
                         </androidx.cardview.widget.CardView>
                     </LinearLayout>
 
@@ -561,8 +620,14 @@
                             android:fontFamily="@font/roboto_medium"
                             android:textSize="14sp"
                             android:textColor="@color/flat2"/>
-                        <TextView android:text="1550г"
+                        <TextView android:text="1550"
                             android:id="@+id/ingredients_total_weight"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/roboto_medium"
+                            android:textSize="14sp"
+                            android:textColor="@color/accent_dark"/>
+                        <TextView android:text="г"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/roboto_medium"
@@ -622,7 +687,6 @@
                     android:textAlignment="textStart"
                     android:layout_height="match_parent"
                     android:textSize="16sp"
-                    android:layout_gravity="center"
                     android:textColor="@color/flat4"
                     android:background="@drawable/rounded_fill_flat2_10"
                     android:textColorHint="@color/flat4"
@@ -661,8 +725,6 @@
         android:layout_height="wrap_content">
         
     </androidx.viewpager2.widget.ViewPager2> -->
-
-
 
 
 </LinearLayout>

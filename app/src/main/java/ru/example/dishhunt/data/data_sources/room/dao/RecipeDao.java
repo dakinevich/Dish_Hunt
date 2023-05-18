@@ -37,10 +37,8 @@ public interface RecipeDao {
 
             recipe.getmIngredients().forEach(elem ->{
                 insertIngredient(new IngredientEntity(elem.getProduct().getId(), recipe_id, elem.getAmount()));
-
             });
         }).start();
-
     }
 
     @Query("DELETE FROM recipe_table")
@@ -51,11 +49,12 @@ public interface RecipeDao {
     LiveData<List<RecipeWithIngredients>> getAlphabetizedRecipes();
 
     @Transaction
-    @Query("SELECT * FROM recipe_table WHERE CookTime " +
+    @Query("SELECT * FROM recipe_table WHERE Title LIKE '%' || :re || '%' AND CookTime " +
             "BETWEEN :time_from AND :time_to " +
             "AND Portions BETWEEN :portions_from AND :portions_to " +
             "ORDER BY title ASC")
-    LiveData<List<RecipeWithIngredients>> getSearchRecipes(int time_from, int time_to, int portions_from, int portions_to);
+
+    LiveData<List<RecipeWithIngredients>> searchRecipes(int time_from, int time_to, int portions_from, int portions_to, String re);
 
     @Transaction
     @Query("SELECT * FROM recipe_table WHERE id = :id_m")
@@ -85,6 +84,9 @@ public interface RecipeDao {
 
     @Query("SELECT * FROM product_table")
     LiveData<List<ProductEntity>> getAllProducts();
+
+    @Query("SELECT * FROM product_table WHERE Name LIKE '%' || :re || '%'")
+    LiveData<List<ProductEntity>> searchProducts(String re);
 
 
 

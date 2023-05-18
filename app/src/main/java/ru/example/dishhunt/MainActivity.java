@@ -1,23 +1,28 @@
 package ru.example.dishhunt;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 
+
+import com.google.android.material.navigation.NavigationBarView;
 
 import ru.example.dishhunt.databinding.ActivityMainBinding;
 
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
-    private FragmentManager fragmentManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void setupBottomNav(NavController navController){
         navController.addOnDestinationChangedListener((navController1, navDestination, bundle) -> {
-            if(navDestination.getId() == R.id.recipeCardFragment
+            /*if(navDestination.getId() == R.id.recipeCardFragment
                     | navDestination.getId() == R.id.searchProductsFragment
                     | navDestination.getId() == R.id.createRecipeFragment) {
                 binding.bottomNavMenu.setVisibility(View.GONE);
@@ -52,6 +57,18 @@ public class MainActivity extends AppCompatActivity {
                 binding.bottomNavMenu.setVisibility(View.VISIBLE);
 
             }
+            binding.bottomNavMenu.setVisibility(View.VISIBLE);*/
+            binding.bottomNavMenu.setOnItemSelectedListener(item -> {
+                if (binding.bottomNavMenu.getSelectedItemId() == item.getItemId()){
+                    int nav_depth = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main).getBackQueue().size();
+                    for(int i = 0; i<nav_depth-2; i++){
+                        navController.navigateUp();
+                    }
+                }
+                NavigationUI.onNavDestinationSelected(item, navController);
+                return true;
+            });
+
         });
     }
 

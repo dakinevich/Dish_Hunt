@@ -12,6 +12,9 @@
         <action
             android:id="@+id/action_home_to_searchFragment"
             app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_home_to_recipeCardFragment"
+            app:destination="@id/recipeCardFragment" />
     </fragment>
     <fragment
         android:id="@+id/saved"
@@ -37,7 +40,7 @@
         tools:layout="@layout/settings"/>
     <fragment
         android:id="@+id/searchFragment"
-        android:name="ru.example.dishhunt.ui.home.SearchFragment"
+        android:name="ru.example.dishhunt.ui.search.SearchFragment"
         android:label="SearchFragment"
         tools:layout="@layout/home">
         <action
@@ -46,10 +49,13 @@
         <action
             android:id="@+id/action_searchFragment_to_resultsFragment"
             app:destination="@id/resultsFragment" />
+        <action
+            android:id="@+id/action_searchFragment_to_searchIngredientsFragment"
+            app:destination="@id/searchIngredientsFragment" />
     </fragment>
     <fragment
         android:id="@+id/resultsFragment"
-        android:name="ru.example.dishhunt.ui.home.ResultsFragment"
+        android:name="ru.example.dishhunt.ui.search.ResultsFragment"
         android:label="ResultsFragment" >
         <action
             android:id="@+id/action_resultsFragment_to_searchFragment"
@@ -104,4 +110,8 @@
         android:id="@+id/searchProductsFragment"
         android:name="ru.example.dishhunt.ui.recipe_creator.SearchProductsFragment"
         android:label="SearchProductsFragment" />
+    <fragment
+        android:id="@+id/searchIngredientsFragment"
+        android:name="ru.example.dishhunt.ui.search.SearchIngredientsFragment"
+        android:label="SearchIngredientsFragment" />
 </navigation>

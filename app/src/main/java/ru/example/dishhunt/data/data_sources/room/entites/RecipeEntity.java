@@ -140,9 +140,8 @@ public class RecipeEntity {
         List<Ingredient> ingredients = ingredientsWithProduct.stream().map(val->{
             return val.ingredientEntity.toDomainModel(val.productEntity);
         }).collect(Collectors.toList());
-        return new Recipe(id, false, AuthorId, Views, 0, 0,
-                Portions, CookTime, CookComplexity, 0, 0, 0,
-                0, Title, ImgSrc, Description, ingredients, IngredientsDescription);
+        return new Recipe(id, false, AuthorId, Views, 0,
+                Portions, CookTime, CookComplexity, Title, ImgSrc, Description, ingredients, IngredientsDescription);
 
     }
 }

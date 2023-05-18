@@ -1,16 +1,12 @@
 package ru.example.dishhunt.ui.profile;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.TextView;
 
-import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -19,11 +15,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import ru.example.dishhunt.R;
 import ru.example.dishhunt.data.models.User;
 import ru.example.dishhunt.databinding.ProfileBinding;
-import ru.example.dishhunt.databinding.SavedBinding;
-import ru.example.dishhunt.ui.saved.SavedCollections;
-import ru.example.dishhunt.ui.saved.SavedRecipes;
-import ru.example.dishhunt.ui.view_models.ProfileViewModel;
-import ru.example.dishhunt.ui.view_models.RecipeCardViewModel;
+import ru.example.dishhunt.ui.profile.view_models.ProfileViewModel;
 
 public class ProfileFragment extends Fragment {
     private ProfileBinding binding;
@@ -39,8 +31,6 @@ public class ProfileFragment extends Fragment {
         userId = requireActivity().getPreferences(Context.MODE_PRIVATE).getInt(getString(R.string.my_id), 1);
         Bundle bundle = this.getArguments();
         if (bundle != null) {
-            BottomNavigationView navBar = getActivity().findViewById(R.id.bottom_nav_menu);
-            navBar.setVisibility(View.GONE);
             userId = bundle.getInt("user_id", 1);
         }
         mProfileViewModel = new ViewModelProvider(requireActivity()).get(ProfileViewModel.class);

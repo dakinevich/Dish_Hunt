@@ -32,6 +32,7 @@ public class RecipeRepository {
 
     private RecipeDao mRecipeDao;
     private LiveData<List<RecipeWithIngredients>> mAllRecipes;
+    private int inf = Integer.MAX_VALUE;
 
     // Note that in order to unit test the WordRepository, you have to remove the Application
     // dependency. This adds complexity and much more code, and this sample is not about testing.
@@ -73,15 +74,24 @@ public class RecipeRepository {
                 (values) -> values.stream().map(CommentEntity::toDomainModel).collect(Collectors.toList()));
 
     }
-    public LiveData<List<Recipe>> searchRecipes(int time_from, int time_to, int portions_from, int portions_to) {
+    public LiveData<List<Recipe>> searchRecipes(int time_from, int time_to, int portions_from, int portions_to, String re) {
+        time_from = (time_from<0)?inf:time_from;
+        time_to = (time_to<0)?inf:time_to;
+        portions_from = (portions_from<0)?inf:portions_from;
+        portions_to = (portions_to<0)?inf:portions_to;
+
         return Transformations.map(
-                mRecipeDao.getSearchRecipes(time_from, time_to, portions_from, portions_to),
+                mRecipeDao.searchRecipes(time_from, time_to, portions_from, portions_to, re),
                 (values) -> values.stream().map(value -> {
                     return value.recipeEntity.toDomainModel(value.ingredientWithProduct);
                         })
                         .collect(Collectors.toList())
         );
     }
+    public LiveData<List<ProductEntity>> searchProducts(String re) {
+        return mRecipeDao.searchProducts(re);
+    }
+
 
     public LiveData<List<Recipe>> getUserRecipes(int user_id) {
         return Transformations.map(

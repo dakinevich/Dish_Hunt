@@ -10,25 +10,20 @@ public class Recipe {
 
     private int id;
     private boolean mIsSaved;
-    private int mSaveCount, mAuthorId, mViews, mPrice, mPortions, mCookTime, mCookComplexity, mCalories, mProteins, mFats, mCarbohydrates;
+    private int mSaveCount, mAuthorId, mViews, mPortions, mCookTime, mCookComplexity;
     private String mTitle, mImgSrc, mDescription, mIngredientsDescription;
     private List<Comment> mComments;
     private List<Ingredient> mIngredients;
     public  Recipe(){}
 
-    public Recipe(int id, boolean mIsSaved, int mAuthorId, int mViews, int mSaveCount, int mPrice, int mPortions, int mCookTime, int mCookComplexity, int mCalories, int mProteins, int mFats, int mCarbohydrates, String mTitle, String mImgSrc, String mDescription, List<Ingredient> mIngredients, String mIngredientsDescription) {
+    public Recipe(int id, boolean mIsSaved, int mAuthorId, int mViews, int mSaveCount, int mPortions, int mCookTime, int mCookComplexity, String mTitle, String mImgSrc, String mDescription, List<Ingredient> mIngredients, String mIngredientsDescription) {
         this.id = id;
         this.mIsSaved = mIsSaved;
         this.mAuthorId = mAuthorId;
         this.mViews = mViews;
-        this.mPrice = mPrice;
         this.mPortions = mPortions;
         this.mCookTime = mCookTime;
         this.mCookComplexity = mCookComplexity;
-        this.mCalories = mCalories;
-        this.mProteins = mProteins;
-        this.mFats = mFats;
-        this.mCarbohydrates = mCarbohydrates;
         this.mTitle = mTitle;
         this.mImgSrc = mImgSrc;
         this.mDescription = mDescription;
@@ -104,13 +99,6 @@ public class Recipe {
     }
 
 
-    public int getmPrice() {
-        return mPrice;
-    }
-
-    public void setmPrice(int mPrice) {
-        this.mPrice = mPrice;
-    }
 
     public int getmPortions() {
         return mPortions;
@@ -137,36 +125,66 @@ public class Recipe {
     }
 
     public int getmCalories() {
-        return mCalories;
+        int total_calories = 0;
+        for (Ingredient ingredient:mIngredients){
+            total_calories+=ingredient.getCalories();
+        }
+        return total_calories;
     }
 
-    public void setmCalories(int mCalories) {
-        this.mCalories = mCalories;
+    public boolean hasmProduct(ProductEntity product) {
+        for (Ingredient ingredient:mIngredients){
+            if(ingredient.getProduct().getName().equals(product.getName())){
+                return true;
+            }
+        }
+        return false;
     }
+
 
     public int getmProteins() {
-        return mProteins;
+        int total_proteins = 0;
+        for (Ingredient ingredient:mIngredients){
+            total_proteins+=ingredient.getProteins();
+        }
+        return total_proteins;
     }
 
-    public void setmProteins(int mProteins) {
-        this.mProteins = mProteins;
-    }
 
     public int getmFats() {
-        return mFats;
+        int total_fats = 0;
+        for (Ingredient ingredient:mIngredients){
+            total_fats+=ingredient.getFats();
+        }
+        return total_fats;
     }
 
-    public void setmFats(int mFats) {
-        this.mFats = mFats;
+    public int getmPrice() {
+        int total_price = 0;
+        for (Ingredient ingredient:mIngredients){
+            total_price+=ingredient.getPrice();
+        }
+        return total_price;
     }
+
+
 
     public int getmCarbohydrates() {
-        return mCarbohydrates;
+        int total_carbohydrates = 0;
+        for (Ingredient ingredient:mIngredients){
+            total_carbohydrates+=ingredient.getCarbohydrates();
+        }
+        return total_carbohydrates;
     }
 
-    public void setmCarbohydrates(int mCarbohydrates) {
-        this.mCarbohydrates = mCarbohydrates;
+    public int getmWeight() {
+        int total_weight = 0;
+        for (Ingredient ingredient:mIngredients){
+            total_weight+=ingredient.getWeight();
+        }
+        return total_weight;
     }
+
 
     public String getmTitle() {
         return mTitle;

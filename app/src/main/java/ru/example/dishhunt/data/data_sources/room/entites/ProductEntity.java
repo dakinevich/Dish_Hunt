@@ -25,12 +25,14 @@ public class ProductEntity {
     private int Carbohydrates;
     @NonNull
     private int Weight;
+    @NonNull
+    private int Price;
 
 
 
     public ProductEntity(){}
 
-    public ProductEntity(@NonNull String name, @NonNull String amountValue, int calories, int proteins, int fats, int carbohydrates, int weight) {
+    public ProductEntity(@NonNull String name, @NonNull String amountValue, int calories, int proteins, int fats, int carbohydrates, int weight, int price) {
         Name = name;
         AmountValue = amountValue;
         Calories = calories;
@@ -38,6 +40,15 @@ public class ProductEntity {
         Fats = fats;
         Carbohydrates = carbohydrates;
         Weight = weight;
+        Price = price;
+    }
+
+    public int getPrice() {
+        return Price;
+    }
+
+    public void setPrice(int price) {
+        Price = price;
     }
 
     public int getWeight() {

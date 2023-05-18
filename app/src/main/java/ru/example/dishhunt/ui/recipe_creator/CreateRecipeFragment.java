@@ -17,8 +17,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import ru.example.dishhunt.R;
 import ru.example.dishhunt.data.models.Ingredient;
 import ru.example.dishhunt.data.models.Recipe;
-import ru.example.dishhunt.ui.adapters.CreateIngredientsAdapter;
-import ru.example.dishhunt.ui.view_models.CreateRecipeViewModel;
+import ru.example.dishhunt.ui.recipe_creator.adapters.CreateIngredientsAdapter;
+import ru.example.dishhunt.ui.recipe_creator.view_models.CreateRecipeViewModel;
 import ru.example.dishhunt.databinding.CreateRecipeBinding;
 
 
@@ -111,18 +111,20 @@ public class CreateRecipeFragment extends Fragment implements IngredientClickInt
         });
         binding.createCookTime.setOnFocusChangeListener((v, hasFocus) -> {
             if (!hasFocus){
-                mCreateRecipeViewModel.recipe.setmCookTime(
+                String view_text = binding.createCookTime.getText().toString();
+                mCreateRecipeViewModel.recipe.setmCookTime(view_text.equals("")?0:
                         Integer.parseInt(
-                                binding.createCookTime.getText().toString()));
+                                view_text));
 
             }
         });
 
         binding.createPortions.setOnFocusChangeListener((v, hasFocus) -> {
             if (!hasFocus){
-                mCreateRecipeViewModel.recipe.setmPortions(
+                String view_text = binding.createPortions.getText().toString();
+                mCreateRecipeViewModel.recipe.setmPortions(view_text.equals("")?0:
                         Integer.parseInt(
-                                binding.createPortions.getText().toString()));
+                                view_text));
             }
         });
 

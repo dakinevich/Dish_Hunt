@@ -20,12 +20,32 @@ public class Ingredient {
         return Product;
     }
 
-    public void setProduct(ProductEntity product) {
-        Product = product;
+    public int getCalories(){
+        return Product.getCalories()*Amount;
+    }
+
+    public int getProteins() {
+        return Product.getProteins()*Amount;
+    }
+
+    public int getFats() {
+        return Product.getFats()*Amount;
+    }
+
+    public int getCarbohydrates() {
+        return Product.getCarbohydrates()*Amount;
     }
 
     public int getWeight() {
         return Product.getWeight()*Amount;
+    }
+
+    public int getPrice(){
+        return Product.getPrice()*Amount;
+    }
+
+    public void setProduct(ProductEntity product) {
+        Product = product;
     }
 
 

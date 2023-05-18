@@ -20,13 +20,13 @@ import ru.example.dishhunt.data.models.Ingredient;
 import ru.example.dishhunt.data.models.Recipe;
 import ru.example.dishhunt.data.models.User;
 import ru.example.dishhunt.databinding.RecipeCardBinding;
-import ru.example.dishhunt.ui.adapters.RecipeCommentsAdapter;
-import ru.example.dishhunt.ui.adapters.RecipeIngredientsAdapter;
-import ru.example.dishhunt.ui.adapters.RecipePageAdapter;
-import ru.example.dishhunt.ui.view_models.RecipeCardViewModel;
-import ru.example.dishhunt.ui.view_models.RecipeCommentsViewModel;
+import ru.example.dishhunt.ui.recipe.adapters.RecipeCommentsAdapter;
+import ru.example.dishhunt.ui.recipe.adapters.RecipeIngredientsAdapter;
+import ru.example.dishhunt.ui.recipe.adapters.RecipePageAdapter;
+import ru.example.dishhunt.ui.recipe.view_models.RecipeCardViewModel;
+import ru.example.dishhunt.ui.recipe.view_models.RecipeCommentsViewModel;
 
-public class RecipeCardFragment extends Fragment {
+public class RecipeCardFragment extends Fragment implements CommentClickInterface{
     private RecipeCardBinding binding;
     private ViewPager2 viewPager2;
     private RecipePageAdapter pageAdapter;
@@ -59,7 +59,7 @@ public class RecipeCardFragment extends Fragment {
 
 
         RecyclerView comments_recyclerView = view.findViewById(R.id.comments_recyclerview);
-        final RecipeCommentsAdapter comments_adapter = new RecipeCommentsAdapter(new RecipeCommentsAdapter.RecipeDiff());
+        final RecipeCommentsAdapter comments_adapter = new RecipeCommentsAdapter(new RecipeCommentsAdapter.RecipeDiff(), this);
         comments_recyclerView.setAdapter(comments_adapter);
         RecyclerView.LayoutManager commentsLayoutManager = new GridLayoutManager(view.getContext(), 1);
         comments_recyclerView.setLayoutManager(commentsLayoutManager);
@@ -165,14 +165,30 @@ public class RecipeCardFragment extends Fragment {
         binding.recipeCardDescription.setText(recipe.getmDescription());
         binding.recipeCardPortions.setText(""+recipe.getmPortions());
         binding.recipeCardIngredientsDescription.setText(recipe.getmIngredientsDescription());
+        binding.recipeCardPrice.setText(""+recipe.getmPrice());
 
         binding.recipeHat1.setImageResource(R.drawable.hat_fill);
         binding.recipeHat2.setImageResource(recipe.getmCookComplexity()>1?R.drawable.hat_fill:R.drawable.hat_empty);
         binding.recipeHat3.setImageResource(recipe.getmCookComplexity()>2?R.drawable.hat_fill:R.drawable.hat_empty);
 
+        binding.ingredientsTotalWeight.setText(""+recipe.getmWeight());
+
+        binding.recipeCardProteins.setText(""+recipe.getmProteins());
+        binding.recipeCardFats.setText(""+recipe.getmFats());
+        binding.recipeCardCarbohydrates.setText(""+recipe.getmCarbohydrates());
+        binding.recipeCardCalories.setText(""+recipe.getmCalories());
+
     }
     public void SetupAuthorViewData(User author){
         binding.recipeCardAuthorName.setText(author.getName());
+
+    }
+
+    @Override
+    public void onClick(int profile_id) {
+        Bundle bundle = new Bundle();
+        bundle.putInt("user_id", profile_id);
+        NavHostFragment.findNavController(requireParentFragment()).navigate(R.id.action_recipeCardFragment_to_profile, bundle);
 
     }
 }

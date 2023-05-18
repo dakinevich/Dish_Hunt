@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/flat2"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <ImageView
+        android:layout_marginLeft="10dp"
+        android:id="@+id/search_products_back"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/arrow_left"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@id/search_products_text"
+        app:layout_constraintBottom_toBottomOf="@id/search_products_text"
+        app:tint="@color/flat4" />
+
+    <EditText
+        android:layout_marginTop="20dp"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="5dp"
+        android:id="@+id/search_products_text"
+        android:layout_width="230dp"
+        android:layout_height="50dp"
+        android:textSize="18sp"
+        android:textColorHint="@color/flat3"
+        android:textColor="@color/flat4"
+        android:fontFamily="@font/roboto_bold"
+        android:background="@drawable/rounded_corner_flat4_20"
+        android:hint="Картошка..."
+        android:inputType="text"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        app:layout_constraintTop_toBottomOf="@id/search_products_text"
+        android:layout_marginTop="20dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:id="@+id/search_products_recycler_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

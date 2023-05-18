@@ -69,10 +69,10 @@ public abstract class RecipeRoomDatabase extends RoomDatabase {
                 Log.e("qwe", "db generating2");
 
                 dao.insertUserSavedRecipesIds(new UserSavedRecipes(1,1));
-                dao.insertProduct(new ProductEntity("Морковь", "шт", 100, 120, 110, 130, 73));
-                dao.insertProduct(new ProductEntity("Картошка", "кг", 100, 120, 110, 130, 1000));
-                dao.insertProduct(new ProductEntity("Свекла", "шт", 100, 120, 110, 130, 93));
-                dao.insertProduct(new ProductEntity("Селедка", "шт", 100, 120, 110, 130,48));
+                dao.insertProduct(new ProductEntity("Морковь", "шт", 22, 23, 12, 10, 80, 28));
+                dao.insertProduct(new ProductEntity("Картошка", "кг", 96, 10, 16, 11, 1000, 45));
+                dao.insertProduct(new ProductEntity("Свекла", "шт", 23, 24, 10, 12, 93, 65));
+                dao.insertProduct(new ProductEntity("Селедка", "шт", 67, 13, 16, 16,48, 37));
                 Log.e("qwe", "db generating2.1");
 
                 dao.insertUser(new UserEntity("Вася Оливкин", "Инфромация о пользователе", "f"));
