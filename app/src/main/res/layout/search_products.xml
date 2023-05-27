@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="match_parent"
-    android:background="@color/flat2"
+    android:minHeight="400dp"
+    android:background="@drawable/rounded_fill_flat2_20"
 
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <ImageView
@@ -18,6 +19,7 @@
         app:tint="@color/flat4" />
 
     <EditText
+        android:layout_marginHorizontal="60dp"
         android:layout_marginTop="20dp"
         android:paddingHorizontal="20dp"
         android:paddingVertical="5dp"

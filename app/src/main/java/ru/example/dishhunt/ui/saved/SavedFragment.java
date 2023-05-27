@@ -22,6 +22,7 @@ public class SavedFragment extends Fragment {
         View view = binding.getRoot();
 
         replaceFragment( new SavedRecipes());
+        /*
         binding.savedRecipesBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -38,6 +39,7 @@ public class SavedFragment extends Fragment {
                 replaceFragment(new SavedCollections());
             }
         });
+        */
         return view;
     }
 

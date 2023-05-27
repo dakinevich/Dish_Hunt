@@ -4,22 +4,17 @@ package ru.example.dishhunt.data.repositories;
 
 import android.app.Application;
 import android.util.Log;
-import android.util.Pair;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Transformations;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 import ru.example.dishhunt.data.data_sources.room.dao.RecipeDao;
 import ru.example.dishhunt.data.data_sources.room.entites.CommentEntity;
-import ru.example.dishhunt.data.data_sources.room.entites.IngredientEntity;
 import ru.example.dishhunt.data.data_sources.room.entites.ProductEntity;
-import ru.example.dishhunt.data.data_sources.room.entites.RecipeEntity;
-import ru.example.dishhunt.data.data_sources.room.entites.RecipeWithIngredients;
+import ru.example.dishhunt.data.data_sources.room.entites.RecipeWithIngredientsAndSlides;
 import ru.example.dishhunt.data.data_sources.room.entites.UserEntity;
 import ru.example.dishhunt.data.data_sources.room.entites.UserSavedRecipes;
 import ru.example.dishhunt.data.data_sources.room.root.RecipeRoomDatabase;
@@ -31,7 +26,7 @@ import ru.example.dishhunt.data.models.User;
 public class RecipeRepository {
 
     private RecipeDao mRecipeDao;
-    private LiveData<List<RecipeWithIngredients>> mAllRecipes;
+    private LiveData<List<RecipeWithIngredientsAndSlides>> mAllRecipes;
     private int inf = Integer.MAX_VALUE;
 
     // Note that in order to unit test the WordRepository, you have to remove the Application
@@ -52,7 +47,7 @@ public class RecipeRepository {
         return Transformations.map(
                 mAllRecipes,
                 (values) -> values.stream().map(value ->
-                        value.recipeEntity.toDomainModel(value.ingredientWithProduct))
+                        value.recipeEntity.toDomainModel(value.ingredientWithProduct, value.slideEntities))
                         .collect(Collectors.toList())
         );
     }
@@ -66,8 +61,19 @@ public class RecipeRepository {
                 mRecipeDao.getRecipe(recipeId),
                 value -> {
                     Log.e("qwe", value.recipeEntity.getTitle());
-                    return value.recipeEntity.toDomainModel(value.ingredientWithProduct);});
+                    return value.recipeEntity.toDomainModel(value.ingredientWithProduct, value.slideEntities);});
     }
+
+    public LiveData<List<Recipe>> getRecipesByIds(List<Integer> recipeIds) {
+        return Transformations.map(
+                mRecipeDao.getRecipes(recipeIds),
+                (values) -> values.stream().map(value -> value.recipeEntity.
+                                toDomainModel(value.ingredientWithProduct, value.slideEntities))
+                        .collect(Collectors.toList())
+        );
+
+    }
+
     public LiveData<List<Comment>> getRecipeCommentsById(int recipeId) {
         return Transformations.map(
                 mRecipeDao.getRecipeComments(recipeId),
@@ -83,7 +89,7 @@ public class RecipeRepository {
         return Transformations.map(
                 mRecipeDao.searchRecipes(time_from, time_to, portions_from, portions_to, re),
                 (values) -> values.stream().map(value -> {
-                    return value.recipeEntity.toDomainModel(value.ingredientWithProduct);
+                    return value.recipeEntity.toDomainModel(value.ingredientWithProduct, value.slideEntities);
                         })
                         .collect(Collectors.toList())
         );
@@ -97,7 +103,7 @@ public class RecipeRepository {
         return Transformations.map(
                 mRecipeDao.getUserRecipes(user_id),
                 (values) -> values.stream().map(value -> {
-                            return value.recipeEntity.toDomainModel(value.ingredientWithProduct);
+                            return value.recipeEntity.toDomainModel(value.ingredientWithProduct, value.slideEntities);
                         })
                         .collect(Collectors.toList())
         );
@@ -117,7 +123,7 @@ public class RecipeRepository {
                 elem -> {
                     UserEntity e = elem;
                     if(e == null){
-                        return new User("ща сек", "момент буквально","");
+                        return new User("ща сек", "момент буквально","", 1);
                     }
                     return e.toDomainModel();
                 });
@@ -145,7 +151,7 @@ public class RecipeRepository {
     // You must call this on a non-UI thread or your app will throw an exception. Room ensures
     // that you're not doing any long running operations on the main thread, blocking the UI.
     public void insertRecipe(Recipe recipe) {
-        mRecipeDao.insertRecipeWithIngredients(recipe);
+        mRecipeDao.insertRecipeWithIngredientsAndSlides(recipe);
     }
     public void insertComment(Comment comment) {
         CommentEntity commentEntity = new CommentEntity(comment.getRecipeId(), comment.getAuthorId(), comment.getText(), comment.getPubTime());

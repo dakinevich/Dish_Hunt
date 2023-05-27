@@ -1,12 +1,16 @@
 package ru.example.dishhunt.ui.search;
 
+import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.fragment.NavHostFragment;
@@ -57,17 +61,26 @@ public class SearchFragment extends Fragment implements SearchIngredientClickInt
         binding.searchBackBtn.setOnClickListener(view_f -> {
             NavHostFragment.findNavController(this).navigateUp();
         });
+        @SuppressLint("NotifyDataSetChanged") MyDialogCloseListener closeListener = dialog -> {
+            adapter_add.notifyDataSetChanged();
+            adapter_remove.notifyDataSetChanged();
+        };
         binding.searchIngredientAdd.setOnClickListener(view_f -> {
+            SearchIngredientsFragment a = new SearchIngredientsFragment();
             Bundle mode_data = new Bundle();
             mode_data.putString("mode", "add");
-            NavHostFragment.findNavController(this).navigate(R.id.action_searchFragment_to_searchIngredientsFragment, mode_data);
+            a.setArguments(mode_data);
+            a.DismissListener(closeListener);
+            a.show(requireActivity().getSupportFragmentManager(), "test tag");
 
         });
         binding.searchIngredientRemove.setOnClickListener(view_f -> {
+            SearchIngredientsFragment a = new SearchIngredientsFragment();
             Bundle mode_data = new Bundle();
             mode_data.putString("mode", "remove");
-            NavHostFragment.findNavController(this).navigate(R.id.action_searchFragment_to_searchIngredientsFragment, mode_data);
-
+            a.setArguments(mode_data);
+            a.DismissListener(closeListener);
+            a.show(requireActivity().getSupportFragmentManager(), "test tag");
         });
         binding.searchForwardBtn.setOnClickListener(view_f -> {
             String search_text = binding.searchEditText.getText().toString();
@@ -95,7 +108,7 @@ public class SearchFragment extends Fragment implements SearchIngredientClickInt
 
             NavHostFragment.findNavController(this).navigate(R.id.action_searchFragment_to_resultsFragment, bundle_out);
         });
-
+        /*
         binding.savedRecipesBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -110,7 +123,7 @@ public class SearchFragment extends Fragment implements SearchIngredientClickInt
                 btn_unpressed(binding.savedRecipesBtn);
             }
         });
-
+        */
         return view;
     }
     private void btn_pressed(TextView btn){

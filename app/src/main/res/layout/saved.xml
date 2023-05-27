@@ -1,47 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/background"
     android:orientation="vertical">
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="20dp"
-        android:orientation="horizontal">
-        <TextView
-            android:id="@+id/saved_recipes_btn"
-            android:layout_width="match_parent"
-            android:layout_height="36dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="@string/recipes_section"
-            android:textSize="20sp"
-            android:fontFamily="@font/roboto_medium"
-            android:textColor="@color/accent_dark"
-            android:background="@drawable/rounded_fill_light_20"/>
-        <Space
-            android:layout_width="20dp"
-            android:layout_height="match_parent"/>
-        <TextView
-            android:id="@+id/saved_collections_btn"
-            android:layout_width="match_parent"
-            android:layout_height="36dp"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:textSize="20sp"
-            android:fontFamily="@font/roboto_medium"
-            android:textColor="@color/flat3"
-            android:text="@string/collections_section"
-            android:background="@drawable/rounded_corner_dark_20"/>
-    </LinearLayout>
+    <!--
 
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="20dp"
+    android:orientation="horizontal">
+    <TextView
+        android:id="@+id/saved_recipes_btn"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="@string/recipes_section"
+        android:textSize="20sp"
+        android:fontFamily="@font/roboto_medium"
+        android:textColor="@color/accent_dark"
+        android:background="@drawable/rounded_fill_light_20"/>
+    <Space
+        android:layout_width="20dp"
+        android:layout_height="match_parent"/>
+    <TextView
+        android:id="@+id/saved_collections_btn"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:fontFamily="@font/roboto_medium"
+        android:textColor="@color/flat3"
+        android:text="@string/collections_section"
+        android:background="@drawable/rounded_corner_dark_20"/>
+    </LinearLayout>
+    -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Сохраненые рецепты"
+        android:textAlignment="center"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:textSize="24sp"
+        android:layout_marginBottom="5dp"
+        android:fontFamily="@font/roboto_bold"
+        android:textColor="@color/accent_dark"
+        />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/saved_fragment_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        tools:layout="@layout/saved_recipes"/>
 
 
 </LinearLayout>

@@ -13,17 +13,18 @@ import ru.example.dishhunt.ui.recipe_creator.ProductClickInterface;
 
 public class SearchProductsAdapter extends ListAdapter<ProductEntity, SearchProductsViewHolder> {
     private final ProductClickInterface productClickInterface;
+    private String mode;
 
 
-    public SearchProductsAdapter(@NonNull DiffUtil.ItemCallback<ProductEntity> diffCallback, ProductClickInterface productClickInterface) {
+    public SearchProductsAdapter(@NonNull DiffUtil.ItemCallback<ProductEntity> diffCallback, ProductClickInterface productClickInterface, String m) {
         super(diffCallback);
         this.productClickInterface = productClickInterface;
-
+        mode= m;
     }
 
     @Override
     public SearchProductsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return SearchProductsViewHolder.create(parent, productClickInterface);
+        return SearchProductsViewHolder.create(parent, productClickInterface, mode);
     }
 
     @Override

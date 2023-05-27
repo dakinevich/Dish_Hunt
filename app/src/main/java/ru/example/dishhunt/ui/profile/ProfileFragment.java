@@ -20,6 +20,7 @@ import ru.example.dishhunt.ui.profile.view_models.ProfileViewModel;
 public class ProfileFragment extends Fragment {
     private ProfileBinding binding;
     private int userId;
+    private int myId;
     private ProfileViewModel mProfileViewModel;
     private User user;
     @Override
@@ -29,17 +30,21 @@ public class ProfileFragment extends Fragment {
         binding = ProfileBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
         userId = requireActivity().getPreferences(Context.MODE_PRIVATE).getInt(getString(R.string.my_id), 1);
+
         Bundle bundle = this.getArguments();
         if (bundle != null) {
-            userId = bundle.getInt("user_id", 1);
+            if(userId!=bundle.getInt("user_id", 1)){
+                binding.profileMyResipesTitle.setVisibility(View.GONE);
+                userId = bundle.getInt("user_id", 1);
+            }
         }
         mProfileViewModel = new ViewModelProvider(requireActivity()).get(ProfileViewModel.class);
         mProfileViewModel.getProfile(userId).observe(requireActivity(), (elem) ->{
             user = elem;
             SetupViewData(user);
         });
-
         replaceFragment(new ProfileRecipesFragment());
+        /*
         binding.profileRecipesBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,6 +61,7 @@ public class ProfileFragment extends Fragment {
 
             }
         });
+        */
         return view;
     }
 

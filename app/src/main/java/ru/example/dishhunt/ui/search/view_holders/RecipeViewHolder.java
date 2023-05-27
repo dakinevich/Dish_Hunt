@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import ru.example.dishhunt.R;
+import ru.example.dishhunt.data.ImageStorage;
 import ru.example.dishhunt.data.models.Recipe;
 import ru.example.dishhunt.ui.search.RecipeClickInterface;
 
@@ -63,7 +64,7 @@ public class RecipeViewHolder extends RecyclerView.ViewHolder {
         recipeViewTitle.setText(recipe.getmTitle());
         recipeViewPrice.setText(""+recipe.getmPrice());
         recipeViewPortions.setText(""+recipe.getmPortions());
-        recipeViewImg.setImageResource(Integer.parseInt(recipe.getmImgSrc()));
+        recipeViewImg.setImageBitmap(ImageStorage.getImage(recipe.getmImgSrc(), itemView.getContext()));
         int cook_time = recipe.getmCookTime();
         if (cook_time>=60){
             recipeViewCookTime.setText(cook_time/60+"ч " + cook_time%60+"м");

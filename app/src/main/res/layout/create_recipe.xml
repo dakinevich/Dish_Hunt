@@ -62,13 +62,29 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:layout_marginHorizontal="20dp">
-                    <ImageView
-                        android:id="@+id/create_img"
-                        android:background="@color/flat2"
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:adjustViewBounds="true"
-                        android:src="@drawable/sample_food_1"/>
+                        android:background="@color/accent_dark"
+                        android:minHeight="200dp">
+                        <ImageView
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintLeft_toLeftOf="parent"
+                            android:id="@+id/create_img"
+                            android:background="@color/flat2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:adjustViewBounds="true"
+                            android:src="@drawable/sample_food_1"/>
+                        <ImageView
+                            android:layout_width="40dp"
+                            android:layout_height="40dp"
+                            android:layout_margin="20dp"
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:src="@drawable/edit"
+                            app:tint="@color/accent_light" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </androidx.cardview.widget.CardView>
 
@@ -242,7 +258,7 @@
                 android:layout_marginBottom="20dp">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
                     <TextView
@@ -270,14 +286,16 @@
                         android:layout_gravity="center"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:text="Добавить ингридиент"/>
+                        android:text="Добавить ингридиент"
+                        android:layout_marginBottom="20dp"/>
                     <TextView
                         android:layout_gravity="center"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/roboto_medium"
+                        android:textSize="16sp"
                         android:textColor="@color/flat4"
-                        android:layout_marginBottom="10dp"
+                        android:layout_marginBottom="5dp"
                         android:text="@string/additionally"/>
 
                     <EditText
@@ -286,17 +304,28 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/roboto_medium"
+                        android:textSize="16sp"
                         android:layout_marginLeft="10dp"
                         android:textColor="@color/flat3"/>
 
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Добавте шаги приготовления"
+                android:layout_marginHorizontal="20dp"
+                android:textColor="@color/accent_light"
+                android:fontFamily="@font/roboto_bold"
+                android:textAlignment="center"
+                android:textSize="24sp"
+                android:layout_marginBottom="20dp"/>
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/create_viewpager"
                 android:layout_width="match_parent"
-                android:layout_marginBottom="20dp"
-                android:layout_height="300dp">
+                android:layout_marginBottom="60dp"
+                android:layout_height="wrap_content">
 
             </androidx.viewpager2.widget.ViewPager2>
 

@@ -11,10 +11,11 @@ public class User {
     private String ImgSrc;
 
 
-    public User(String name, String bio, String imgSrc) {
+    public User(String name, String bio, String imgSrc, int id) {
         Name = name;
         Bio = bio;
         ImgSrc = imgSrc;
+        this.id = id;
     }
 
     public User() {

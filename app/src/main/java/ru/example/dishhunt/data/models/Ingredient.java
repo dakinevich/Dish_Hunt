@@ -20,19 +20,19 @@ public class Ingredient {
         return Product;
     }
 
-    public int getCalories(){
+    public float getCalories(){
         return Product.getCalories()*Amount;
     }
 
-    public int getProteins() {
+    public float getProteins() {
         return Product.getProteins()*Amount;
     }
 
-    public int getFats() {
+    public float getFats() {
         return Product.getFats()*Amount;
     }
 
-    public int getCarbohydrates() {
+    public float getCarbohydrates() {
         return Product.getCarbohydrates()*Amount;
     }
 
@@ -40,7 +40,7 @@ public class Ingredient {
         return Product.getWeight()*Amount;
     }
 
-    public int getPrice(){
+    public float getPrice(){
         return Product.getPrice()*Amount;
     }
 

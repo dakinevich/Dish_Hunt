@@ -66,6 +66,6 @@ public class UserEntity {
         ImgSrc = imgSrc;
     }
     public User toDomainModel() {
-        return new User(Name, Bio, ImgSrc);
+        return new User(Name, Bio, ImgSrc, id);
     }
 }

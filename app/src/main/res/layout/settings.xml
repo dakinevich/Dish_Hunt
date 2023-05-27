@@ -39,7 +39,7 @@
         android:layout_marginBottom="20dp"
         android:layout_marginHorizontal="20dp"
         android:background="@drawable/rounded_back_flat_1_20"
-        android:text="Очистить коллекции"
+        android:text="Удалить рецепты"
         android:textSize="24dp"/>
     <TextView
         android:layout_width="match_parent"
@@ -50,18 +50,7 @@
         android:layout_marginBottom="20dp"
         android:layout_marginHorizontal="20dp"
         android:background="@drawable/rounded_back_flat_1_20"
-        android:text="Очистить рецепты"
-        android:textSize="24dp"/>
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:gravity="center"
-        android:textColor="@color/flat4"
-        android:fontFamily="@font/roboto_medium"
-        android:layout_marginBottom="20dp"
-        android:layout_marginHorizontal="20dp"
-        android:background="@drawable/rounded_back_flat_1_20"
-        android:text="Выйти из аккаунта"
+        android:text="Очистить сохраненное"
         android:textSize="24dp"/>
     <TextView
         android:layout_width="match_parent"

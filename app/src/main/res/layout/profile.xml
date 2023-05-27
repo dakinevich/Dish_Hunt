@@ -3,6 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/background"
     android:orientation="vertical">
 
@@ -18,7 +19,6 @@
             android:layout_marginTop="-60dp"
             android:paddingTop="60dp"
             android:orientation="vertical"
-            android:layout_marginBottom="10dp"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
             <ImageView
                 android:layout_width="150dp"
@@ -49,7 +49,17 @@
                 android:text="Quisque vel vulputate lectus. Vivamus maximus vitae sapien nec ornare. Etiam vel malesuada turpis. Aliquam aliquet laoreet viverra. In et quam in nisl lobortis lobortis. Nulla eu varius purus, sed mattis enim. "
                 android:textSize="14sp"/>
         </LinearLayout>
+        <TextView
+            android:id="@+id/profile_my_resipes_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textColor="@color/accent_dark"
+            android:fontFamily="@font/roboto_medium"
+            android:text="Мои рецепты"
+            android:textSize="34sp"/>
 
+        <!--
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -82,6 +92,7 @@
                 android:text="@string/collections_section"
                 android:background="@drawable/rounded_corner_dark_20"/>
         </LinearLayout>
+        -->
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
@@ -89,6 +100,7 @@
         android:layout_height="wrap_content"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
         <androidx.fragment.app.FragmentContainerView
+            tools:layout="@layout/profile_recipes"
             android:id="@+id/profile_fragment_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>

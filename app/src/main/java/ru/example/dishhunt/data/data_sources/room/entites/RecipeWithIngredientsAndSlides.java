@@ -5,7 +5,7 @@ import androidx.room.Relation;
 
 import java.util.List;
 
-public class RecipeWithIngredients {
+public class RecipeWithIngredientsAndSlides {
     @Embedded
     public RecipeEntity recipeEntity;
     @Relation(
@@ -14,5 +14,11 @@ public class RecipeWithIngredients {
             entityColumn = "RecipeId"
     )
     public List<IngredientWithProduct> ingredientWithProduct;
-    public RecipeWithIngredients(){}
+    @Relation(
+            entity = SlideEntity.class,
+            parentColumn = "id",
+            entityColumn = "RecipeId"
+    )
+    public List<SlideEntity> slideEntities;
+    public RecipeWithIngredientsAndSlides(){}
 }

@@ -46,6 +46,7 @@
             android:elevation="0dp"
             app:cardCornerRadius="10dp">
             <ImageView
+                android:background="@color/accent_light"
                 android:id="@+id/recipe_preview_img"
                 android:layout_width="133dp"
                 android:layout_height="92dp"

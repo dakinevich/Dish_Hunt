@@ -1,39 +1,56 @@
 package ru.example.dishhunt;
 
-import androidx.annotation.NonNull;
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
-import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.NavigationUI;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
-import android.view.View;
 
 
-import com.google.android.material.navigation.NavigationBarView;
-
+import ru.example.dishhunt.data.ImageStorage;
 import ru.example.dishhunt.databinding.ActivityMainBinding;
 
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
 
+    @SuppressLint("CommitPrefEdits")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-       getApplicationContext().deleteDatabase("recipe_database");
+
+        //getApplicationContext().deleteDatabase("recipe_database");
+        //ImageStorage.clearStorage(this);
+        setupBaseImgs();
 
         SharedPreferences sharedPref = this.getSharedPreferences(getString(R.string.main_shared_preferences_name), Context.MODE_PRIVATE);
+
+        StringBuilder str = new StringBuilder();
+        for (int i = 0; i < 10; i++) {
+            str.append(i).append(",");
+        }
+        SharedPreferences.Editor editor = sharedPref.edit();
+        editor.putString(getString(R.string.resent_views), str.toString());
+        editor.apply();
+
         if (sharedPref.getInt(getString(R.string.my_id),0) == 0){
-            SharedPreferences.Editor editor = sharedPref.edit();
+            editor = sharedPref.edit();
             editor.putInt(getString(R.string.my_id), 1);
             editor.apply();
         }
+
 
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
@@ -71,6 +88,21 @@ public class MainActivity extends AppCompatActivity {
 
         });
     }
+    private void setupBaseImgs(){
+        int[] imgs = new int[]{R.drawable.sample_food_1,R.drawable.sample_food_2,R.drawable.sample_food_3,R.drawable.sample_food_4,R.drawable.sample_food_5,R.drawable.sample_food_6,R.drawable.sample_food_7,R.drawable.sample_food_8,R.drawable.sample_food_9,R.drawable.sample_food_10};
 
+        for (int i = 0; i<10;i++){
+            Bitmap bMap = BitmapFactory.decodeResource(getResources(), imgs[i]);
+            String file_name = ImageStorage.putImage(bMap, this);
+            Log.e("qwe", file_name+" img saved");
+        }
+        imgs = new int[]{R.drawable.test_page_1,R.drawable.test_page_2,R.drawable.test_page_3};
 
+        for (int i = 0; i<3;i++){
+            Bitmap bMap = BitmapFactory.decodeResource(getResources(), imgs[i]);
+            String file_name = ImageStorage.putImage(bMap, this);
+            Log.e("qwe", file_name+" img saved");
+        }
+
+    }
 }

@@ -57,6 +57,7 @@ public class ProfileRecipesFragment extends Fragment implements RecipeClickInter
                 elem.setmIsSaved(combo.second.contains(elem.getId()));
             });
             adapter.submitList(recipes);
+
         });
         return view;
     }

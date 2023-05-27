@@ -3,18 +3,18 @@
     <item
         android:icon="@drawable/home"
         android:id="@+id/home"
-        android:title="Home" />
+        android:title="Главная" />
     <item
         android:icon="@drawable/bookmark"
         android:id="@+id/saved"
-        android:title="Saved" />
+        android:title="Сохраненые" />
     <item
         android:icon="@drawable/user"
         android:id="@+id/my_profile"
-        android:title="Profile" />
+        android:title="Профиль" />
     <item
         android:icon="@drawable/settings"
         android:id="@+id/settings"
-        android:title="Settings" />
+        android:title="Настройки" />
 
 </menu>

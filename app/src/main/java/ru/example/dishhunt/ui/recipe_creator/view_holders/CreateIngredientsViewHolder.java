@@ -1,6 +1,8 @@
 package ru.example.dishhunt.ui.recipe_creator.view_holders;
 
 import android.annotation.SuppressLint;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,8 +45,22 @@ public class CreateIngredientsViewHolder extends RecyclerView.ViewHolder {
         ingredientViewMinus.setOnClickListener(v -> {
             ingredientClickInterface.onMinusClick(ingredient);
         });
-        ingredientViewAmount.setOnFocusChangeListener((v, hasFocus) -> {
-            ingredientClickInterface.onEdit(ingredient, Integer.parseInt(""+ingredientViewAmount.getText()));
+        ingredientViewAmount.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                ingredientClickInterface.onEdit(ingredient, Integer.parseInt("0"+ingredientViewAmount.getText()));
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
         });
     }
 

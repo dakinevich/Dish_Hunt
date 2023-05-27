@@ -14,9 +14,11 @@ public class Recipe {
     private String mTitle, mImgSrc, mDescription, mIngredientsDescription;
     private List<Comment> mComments;
     private List<Ingredient> mIngredients;
+    public List<Slide> mSlides;
+
     public  Recipe(){}
 
-    public Recipe(int id, boolean mIsSaved, int mAuthorId, int mViews, int mSaveCount, int mPortions, int mCookTime, int mCookComplexity, String mTitle, String mImgSrc, String mDescription, List<Ingredient> mIngredients, String mIngredientsDescription) {
+    public Recipe(int id, boolean mIsSaved, int mAuthorId, int mViews, int mSaveCount, int mPortions, int mCookTime, int mCookComplexity, String mTitle, String mImgSrc, String mDescription, List<Ingredient> mIngredients, List<Slide> mSlides, String mIngredientsDescription) {
         this.id = id;
         this.mIsSaved = mIsSaved;
         this.mAuthorId = mAuthorId;
@@ -30,6 +32,17 @@ public class Recipe {
         this.mIngredients = mIngredients;
         this.mSaveCount = mSaveCount;
         this.mIngredientsDescription = mIngredientsDescription;
+        this.mSlides = mSlides;
+    }
+    public void addmSlide(){
+        mSlides.add(new Slide("", ""));
+    }
+    public List<Slide> getmSlides() {
+        return mSlides;
+    }
+
+    public void setmSlides(List<Slide> mSlides) {
+        this.mSlides = mSlides;
     }
 
     public boolean addIngredient(ProductEntity product){
@@ -124,8 +137,8 @@ public class Recipe {
         this.mCookComplexity = mCookComplexity;
     }
 
-    public int getmCalories() {
-        int total_calories = 0;
+    public float getmCalories() {
+        float total_calories = 0;
         for (Ingredient ingredient:mIngredients){
             total_calories+=ingredient.getCalories();
         }
@@ -142,8 +155,8 @@ public class Recipe {
     }
 
 
-    public int getmProteins() {
-        int total_proteins = 0;
+    public float getmProteins() {
+        float total_proteins = 0;
         for (Ingredient ingredient:mIngredients){
             total_proteins+=ingredient.getProteins();
         }
@@ -151,8 +164,8 @@ public class Recipe {
     }
 
 
-    public int getmFats() {
-        int total_fats = 0;
+    public float getmFats() {
+        float total_fats = 0;
         for (Ingredient ingredient:mIngredients){
             total_fats+=ingredient.getFats();
         }
@@ -169,16 +182,16 @@ public class Recipe {
 
 
 
-    public int getmCarbohydrates() {
-        int total_carbohydrates = 0;
+    public float getmCarbohydrates() {
+        float total_carbohydrates = 0;
         for (Ingredient ingredient:mIngredients){
             total_carbohydrates+=ingredient.getCarbohydrates();
         }
         return total_carbohydrates;
     }
 
-    public int getmWeight() {
-        int total_weight = 0;
+    public float getmWeight() {
+        float total_weight = 0;
         for (Ingredient ingredient:mIngredients){
             total_weight+=ingredient.getWeight();
         }

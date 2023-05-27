@@ -1,7 +1,5 @@
 package ru.example.dishhunt.data.data_sources.room.dao;
 
-import android.util.Pair;
-
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
@@ -16,12 +14,12 @@ import ru.example.dishhunt.data.data_sources.room.entites.IngredientEntity;
 import ru.example.dishhunt.data.data_sources.room.entites.IngredientWithProduct;
 import ru.example.dishhunt.data.data_sources.room.entites.ProductEntity;
 import ru.example.dishhunt.data.data_sources.room.entites.RecipeEntity;
-import ru.example.dishhunt.data.data_sources.room.entites.RecipeWithIngredients;
+import ru.example.dishhunt.data.data_sources.room.entites.RecipeWithIngredientsAndSlides;
+import ru.example.dishhunt.data.data_sources.room.entites.SlideEntity;
 import ru.example.dishhunt.data.data_sources.room.entites.UserEntity;
 import ru.example.dishhunt.data.data_sources.room.entites.UserSavedRecipes;
-import ru.example.dishhunt.data.data_sources.room.root.RecipeRoomDatabase;
-import ru.example.dishhunt.data.models.Ingredient;
 import ru.example.dishhunt.data.models.Recipe;
+import ru.example.dishhunt.data.models.Slide;
 
 @Dao
 public interface RecipeDao {
@@ -29,7 +27,7 @@ public interface RecipeDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     long insertRecipe(RecipeEntity recipeEntity);
 
-    default void insertRecipeWithIngredients(Recipe recipe){
+    default void insertRecipeWithIngredientsAndSlides(Recipe recipe){
         //TODO something with your live
         new Thread(() -> {
             RecipeEntity recipeEntity = new RecipeEntity(recipe.getmTitle(), recipe.getmDescription(), recipe.getmCookTime(), recipe.getmAuthorId(), recipe.getmViews(), recipe.getmCookComplexity(), recipe.getmPortions(), recipe.getmImgSrc(), recipe.getmIngredientsDescription());
@@ -38,6 +36,11 @@ public interface RecipeDao {
             recipe.getmIngredients().forEach(elem ->{
                 insertIngredient(new IngredientEntity(elem.getProduct().getId(), recipe_id, elem.getAmount()));
             });
+            for(int i = 0; i <recipe.getmSlides().size(); i++){
+                Slide elem = recipe.getmSlides().get(i);
+                insertSlide(new SlideEntity(elem.getImgSrc(), elem.getDescription(), recipe_id, i+1));
+            }
+
         }).start();
     }
 
@@ -46,7 +49,13 @@ public interface RecipeDao {
 
     @Transaction
     @Query("SELECT * FROM recipe_table ORDER BY title ASC")
-    LiveData<List<RecipeWithIngredients>> getAlphabetizedRecipes();
+    LiveData<List<RecipeWithIngredientsAndSlides>> getAlphabetizedRecipes();
+
+
+    @Transaction
+    @Query("SELECT * FROM recipe_table WHERE id IN (:ids)")
+    LiveData<List<RecipeWithIngredientsAndSlides>> getRecipes(List<Integer> ids);
+
 
     @Transaction
     @Query("SELECT * FROM recipe_table WHERE Title LIKE '%' || :re || '%' AND CookTime " +
@@ -54,15 +63,15 @@ public interface RecipeDao {
             "AND Portions BETWEEN :portions_from AND :portions_to " +
             "ORDER BY title ASC")
 
-    LiveData<List<RecipeWithIngredients>> searchRecipes(int time_from, int time_to, int portions_from, int portions_to, String re);
+    LiveData<List<RecipeWithIngredientsAndSlides>> searchRecipes(int time_from, int time_to, int portions_from, int portions_to, String re);
 
     @Transaction
     @Query("SELECT * FROM recipe_table WHERE id = :id_m")
-    LiveData<RecipeWithIngredients> getRecipe(int id_m);
+    LiveData<RecipeWithIngredientsAndSlides> getRecipe(int id_m);
 
     @Transaction
     @Query("SELECT * FROM recipe_table WHERE AuthorId = :user_id")
-    LiveData<List<RecipeWithIngredients>> getUserRecipes(int user_id);
+    LiveData<List<RecipeWithIngredientsAndSlides>> getUserRecipes(int user_id);
 
     @Query("UPDATE recipe_table SET Views = Views + 1 WHERE id = :recipe_id")
     void updateViewsOnRecipe(int recipe_id);
@@ -122,6 +131,10 @@ public interface RecipeDao {
     LiveData<Integer> getSavedCount(int recipe_id);
 
 
+
+    //Slides
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    void insertSlide(SlideEntity slideEntity);
 
 
 }

@@ -1,6 +1,8 @@
 package ru.example.dishhunt.ui.recipe;
 
 import android.annotation.SuppressLint;
+import android.app.Application;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import ru.example.dishhunt.R;
+import ru.example.dishhunt.data.ImageStorage;
 import ru.example.dishhunt.data.models.Comment;
 import ru.example.dishhunt.data.models.Ingredient;
 import ru.example.dishhunt.data.models.Recipe;
@@ -28,24 +31,26 @@ import ru.example.dishhunt.ui.recipe.view_models.RecipeCommentsViewModel;
 
 public class RecipeCardFragment extends Fragment implements CommentClickInterface{
     private RecipeCardBinding binding;
-    private ViewPager2 viewPager2;
-    private RecipePageAdapter pageAdapter;
     private RecipeCardViewModel mRecipeCardViewModel;
     private RecipeCommentsViewModel mRecipeCommentsViewModel;
     private int recipeId;
     private Recipe recipe;
     private User author;
+    private RecipePageAdapter pageAdapter;
+    private ViewPager2 viewPager2;
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container,
                              Bundle savedInstanceState) {
 
         binding = RecipeCardBinding.inflate(inflater, container, false);
-        pageAdapter = new RecipePageAdapter(this);
-        viewPager2 = binding.recipeCardViewpager;
-        viewPager2.setAdapter(pageAdapter);
+
         View view = binding.getRoot();
         recipe = new Recipe();
+        pageAdapter = new RecipePageAdapter(this, recipe.getmSlides());
+        viewPager2 = binding.recipeCardViewpager;
+        viewPager2.setAdapter(pageAdapter);
 
 
 
@@ -80,10 +85,12 @@ public class RecipeCardFragment extends Fragment implements CommentClickInterfac
             if (res != null){
                 res.setmIsSaved(combo.second.contains(res.getId()));
                 recipe = res;
-                SetupRecipeViewData(res);
-
+                SetupRecipeViewData(res, getContext());
                 ingredient_adapter.submitList(recipe.getmIngredients());
-
+                if(isAdded()){
+                    pageAdapter = new RecipePageAdapter(this, recipe.getmSlides());
+                    viewPager2.setAdapter(pageAdapter);
+                }
             }
         });
         mRecipeCardViewModel.getAuthor(recipeId).observe(requireActivity(), (elem) ->{
@@ -126,6 +133,8 @@ public class RecipeCardFragment extends Fragment implements CommentClickInterfac
                 }
                 else{
                     binding.recipeMyComment.setHint(R.string.comment_hint);
+                    binding.scrollView.post(() -> binding.scrollView.scrollTo(0,  binding.scrollView.getBottom()));
+
                 }
 
             }
@@ -144,11 +153,11 @@ public class RecipeCardFragment extends Fragment implements CommentClickInterfac
         return view;
     }
     @SuppressLint("SetTextI18n")
-    public void SetupRecipeViewData(Recipe recipe){
+    public void SetupRecipeViewData(Recipe recipe, Context context){
         binding.recipeCardSaveBtn.setImageResource(recipe.ismIsSaved()?R.drawable.bookmark_filled:R.drawable.bookmark);
         binding.recipeCardTitle.setText(recipe.getmTitle());
         binding.recipeCardDescription.setText(recipe.getmDescription());
-        binding.recipeCardImg.setImageResource(Integer.parseInt(recipe.getmImgSrc()));
+        binding.recipeCardImg.setImageBitmap(ImageStorage.getImage(recipe.getmImgSrc(),context));
         int total_weight = 0;
         for(Ingredient elem: recipe.getmIngredients()){
             total_weight+=elem.getWeight();

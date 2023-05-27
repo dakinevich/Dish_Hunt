@@ -2,7 +2,7 @@
     <string name="app_name">Dish Hunt</string>
     <string name="search_hint">Поиск</string>
     <string name="latest_section">Недавно просметренные</string>
-    <string name="fast_cook_section">Приготовьте за 20 минкт</string>
+    <string name="fast_cook_section">Приготовьте за 20 минут</string>
     <string name="email_hint">email</string>
     <string name="pass_hint">пароль</string>
     <string name="create_acc_btn">Создать</string>
@@ -32,6 +32,7 @@
     <string name="ingredients_remove">Убрать</string>
     <string name="comment_hint">Введите комментарий</string>
     <string name="my_id">my_id</string>
+    <string name="resent_views">resent_views</string>
     <string name="main_shared_preferences_name">main</string>
 
 

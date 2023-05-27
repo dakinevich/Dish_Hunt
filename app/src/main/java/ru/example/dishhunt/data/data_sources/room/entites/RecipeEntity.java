@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 
 import ru.example.dishhunt.data.models.Ingredient;
 import ru.example.dishhunt.data.models.Recipe;
+import ru.example.dishhunt.data.models.Slide;
 
 @Entity(tableName = "recipe_table")
 public class RecipeEntity {
@@ -136,12 +137,14 @@ public class RecipeEntity {
         ImgSrc = imgSrc;
     }
 
-    public Recipe toDomainModel(List<IngredientWithProduct> ingredientsWithProduct) {
-        List<Ingredient> ingredients = ingredientsWithProduct.stream().map(val->{
-            return val.ingredientEntity.toDomainModel(val.productEntity);
-        }).collect(Collectors.toList());
+    public Recipe toDomainModel(List<IngredientWithProduct> ingredientsWithProduct, List<SlideEntity> slideEntities) {
+        List<Ingredient> ingredients = ingredientsWithProduct.stream().map(val-> val.ingredientEntity.toDomainModel(val.productEntity)).collect(Collectors.toList());
+        List<Slide> slides = new ArrayList<>();
+        if (slideEntities.size()>0){
+            slides = slideEntities.get(0).toDomainModel(slideEntities);
+        }
         return new Recipe(id, false, AuthorId, Views, 0,
-                Portions, CookTime, CookComplexity, Title, ImgSrc, Description, ingredients, IngredientsDescription);
+                Portions, CookTime, CookComplexity, Title, ImgSrc, Description, ingredients, slides, IngredientsDescription);
 
     }
 }

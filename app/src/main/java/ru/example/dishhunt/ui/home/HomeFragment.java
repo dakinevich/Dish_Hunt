@@ -1,5 +1,7 @@
 package ru.example.dishhunt.ui.home;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +14,9 @@ import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.StringTokenizer;
 import java.util.stream.Collectors;
 
 import ru.example.dishhunt.R;
@@ -40,6 +44,8 @@ public class HomeFragment extends Fragment implements RecipeClickInterface {
         binding.homeSearchBtn.setOnClickListener(view_f -> {
             NavHostFragment.findNavController(this).navigate(R.id.action_home_to_searchFragment);
         });
+        SharedPreferences sharedPref = requireActivity().getSharedPreferences(getString(R.string.main_shared_preferences_name), Context.MODE_PRIVATE);
+
 
         //1
         adapter_1 = new RecipeListAdapter(new RecipeListAdapter.RecipeDiff(), this);
@@ -62,7 +68,15 @@ public class HomeFragment extends Fragment implements RecipeClickInterface {
 
         //ViewModel
         mHomeViewModel = new ViewModelProvider(requireActivity()).get(HomeViewModel.class);
-        mHomeViewModel.searchRecipes(0, -1, 0, -1).observe(requireActivity(), combo -> {
+
+        String savedString = sharedPref.getString("resent_views", "");
+        StringTokenizer st = new StringTokenizer(savedString, ",");
+        List<Integer> resent_inds = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            resent_inds.add(Integer.parseInt(st.nextToken()));
+        }
+
+        mHomeViewModel.getRecipesByInds(resent_inds).observe(requireActivity(), combo -> {
             List<Recipe> recipes = combo.first;
             recipes.forEach((elem) -> elem.setmIsSaved(combo.second.contains(elem.getId())));
             adapter_1.submitList(recipes);

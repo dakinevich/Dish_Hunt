@@ -3,12 +3,15 @@ package ru.example.dishhunt.ui.home.view_models;
 import android.app.Application;
 import android.content.Context;
 import android.content.res.Resources;
+import android.util.Log;
 import android.util.Pair;
 
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
+import androidx.lifecycle.Transformations;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -52,6 +55,9 @@ public class HomeViewModel extends AndroidViewModel {
     }
 
 
+    public CombinedLiveData getRecipesByInds(List<Integer> inds) {
+        return new CombinedLiveData(mRepository.getRecipesByIds(inds), mSavedRecipes);
+    }
 
     public void insert(Recipe recipe) { mRepository.insertRecipe(recipe); }
 

@@ -16,23 +16,23 @@ public class ProductEntity {
     @NonNull
     private String AmountValue;
     @NonNull
-    private int Calories;
+    private float Calories;
     @NonNull
-    private int Proteins;
+    private float Proteins;
     @NonNull
-    private int Fats ;
+    private float Fats ;
     @NonNull
-    private int Carbohydrates;
+    private float Carbohydrates;
     @NonNull
     private int Weight;
     @NonNull
-    private int Price;
+    private float Price;
 
 
 
     public ProductEntity(){}
 
-    public ProductEntity(@NonNull String name, @NonNull String amountValue, int calories, int proteins, int fats, int carbohydrates, int weight, int price) {
+    public ProductEntity(@NonNull String name, @NonNull String amountValue, float calories, float proteins, float fats, float carbohydrates, int weight, float price) {
         Name = name;
         AmountValue = amountValue;
         Calories = calories;
@@ -43,11 +43,11 @@ public class ProductEntity {
         Price = price;
     }
 
-    public int getPrice() {
+    public float getPrice() {
         return Price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(float price) {
         Price = price;
     }
 
@@ -85,35 +85,35 @@ public class ProductEntity {
         AmountValue = amountValue;
     }
 
-    public int getCalories() {
+    public float getCalories() {
         return Calories;
     }
 
-    public void setCalories(int calories) {
+    public void setCalories(float calories) {
         Calories = calories;
     }
 
-    public int getProteins() {
+    public float getProteins() {
         return Proteins;
     }
 
-    public void setProteins(int proteins) {
+    public void setProteins(float proteins) {
         Proteins = proteins;
     }
 
-    public int getFats() {
+    public float getFats() {
         return Fats;
     }
 
-    public void setFats(int fats) {
+    public void setFats(float fats) {
         Fats = fats;
     }
 
-    public int getCarbohydrates() {
+    public float getCarbohydrates() {
         return Carbohydrates;
     }
 
-    public void setCarbohydrates(int carbohydrates) {
+    public void setCarbohydrates(float carbohydrates) {
         Carbohydrates = carbohydrates;
     }
 }
